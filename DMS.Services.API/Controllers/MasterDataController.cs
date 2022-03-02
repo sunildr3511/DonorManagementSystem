@@ -14,7 +14,6 @@ namespace DMS.Services.API.Controllers
     {
         private readonly IMediator _mediator;
 
-
         public MasterDataController(IMediator mediator)
         {
             _mediator = mediator;
