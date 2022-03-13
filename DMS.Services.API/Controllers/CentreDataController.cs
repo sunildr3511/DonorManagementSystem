@@ -15,8 +15,8 @@ namespace DMS.Services.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet("all", Name = "GetCentres")]
-        public async Task<ActionResult<CentreDataVM>> GetCentres([FromQuery] int locationId)
+        [HttpGet("locationId", Name = "GetCentresByLocation")]
+        public async Task<ActionResult<CentreDataVM>> GetCentresByLocation([FromQuery] int locationId)
         {
             var result = await _mediator.Send(new CentreDataListQuery { Id = locationId });
 
