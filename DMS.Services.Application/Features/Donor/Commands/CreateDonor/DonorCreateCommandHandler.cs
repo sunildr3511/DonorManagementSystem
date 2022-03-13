@@ -4,7 +4,6 @@ using DMS.Services.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -26,41 +25,19 @@ namespace DMS.Services.Application.Features
         {
             try
             {
+                var mappedDonor= _mapper.Map<Donor>(request);
 
-                var @donorEntity = await _repository.AddAsync(new Donor
-                {
-                    DonorId = "DNR_" + request.Location + "_" + request.Centre,
-                    Type = request.Type,
-                    Name = request.Name,
-                    PanCard = request.PanCard,
-                    Category = request.Category,
-                    ReferedBy = request.ReferedBy,
-                    RelationShipManager = request.RelationShipManager,
-                    SourceOfPayment = request.SourceOfPayment,
-                    Purpose = request.Purpose,
-                    Location = request.Location,
-                    Centre = request.Centre,
-                    Comment = request.Comment,
-                    FollowUpDate = request.FollowUpDate
-                });
+                mappedDonor.DonorId = "DNR_" + request.Location + "_" + request.Centre;
 
-                foreach (var stakHolder in request.StakeHolders)
+                var @donorEntity = await _repository.AddAsync(mappedDonor);
+
+                var mappedStakeHolder = _mapper.Map<List<StakeHolder>>(request.StakeHolders);
+
+                foreach (var stakHolder in mappedStakeHolder)
                 {
-                    var @stakeHolderInfo = await _stakeHolderRepo.AddAsync(new StakeHolder
-                    {
-                        DonorId = donorEntity.Id,
-                        DecisionMakingRole = stakHolder.DecisionMakingRole,
-                        DonorRelationShip = stakHolder.DonorRelationShip,
-                        Salutation = stakHolder.Salutation,
-                        Name = stakHolder.Name,
-                        Designation = stakHolder.Designation,
-                        Company = stakHolder.Company,
-                        EmailId = stakHolder.EmailId,
-                        MobileNo = stakHolder.MobileNo,
-                        Address = stakHolder.Address,
-                        DecisionMaker = stakHolder.DecisionMaker,
-                        DOB = stakHolder.DOB
-                    });
+                    stakHolder.DonorId = donorEntity.Id;
+
+                    await _stakeHolderRepo.AddAsync(stakHolder);
                 }
 
                 return new DonorVM { Id = @donorEntity.Id, DonorId = donorEntity.DonorId };
