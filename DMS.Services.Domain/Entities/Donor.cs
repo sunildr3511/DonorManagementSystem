@@ -20,6 +20,5 @@ namespace DMS.Services.Domain.Entities
         public string Centre { get; set; }
         public string Comment { get; set; }
         public DateTime FollowUpDate { get; set; }
-        //public List<StakeHolderDTO> StakeHolders { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace DMS.Services.Application.Features
         {
             try
             {
-                var mappedDonor= _mapper.Map<Donor>(request);
+                var mappedDonor= _mapper.Map<DMS.Services.Domain.Entities.Donor>(request);
 
                 mappedDonor.DonorId = "DNR_" + request.Location + "_" + request.Centre;
 

@@ -22,5 +22,13 @@ namespace DMS.Services.API.Controllers
 
             return Ok(id);
         }
+
+        [HttpPost("addDocument", Name = "AddDocument")]
+        public async Task<ActionResult<int>> AddDocument([FromForm] DonorDocumentCreateCommand donorDocumentCreateCommand)
+        {
+            var id = await _mediator.Send(donorDocumentCreateCommand);
+
+            return Ok(id);
+        }
     }
 }

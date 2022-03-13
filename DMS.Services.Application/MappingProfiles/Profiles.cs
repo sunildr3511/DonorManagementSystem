@@ -1,6 +1,10 @@
 ﻿using AutoMapper;
+using DMS.Services.Application.Common;
 using DMS.Services.Application.Features;
 using DMS.Services.Domain.Entities;
+using Microsoft.AspNetCore.Http;
+using System;
+using System.IO;
 
 namespace DMS.Services.Application.MappingProfiles
 {
@@ -51,6 +55,13 @@ namespace DMS.Services.Application.MappingProfiles
             CreateMap<Centre, CentreDataVM>().ReverseMap();
            
             CreateMap<CentreDataVM, Centre>().ReverseMap();
+
+            CreateMap<DonorDocument, DonorDocumentCreateCommand>().ReverseMap().ForMember(x => x.Document, opt =>
+            {
+                opt.MapFrom(src => Utilities.GetDocumentDataInBytes(src.Document));
+            });
         }
+
+        
     }
 }
