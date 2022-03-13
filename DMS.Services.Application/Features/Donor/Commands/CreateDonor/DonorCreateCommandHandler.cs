@@ -31,9 +31,9 @@ namespace DMS.Services.Application.Features
 
                 var @donorEntity = await _repository.AddAsync(mappedDonor);
 
-                var mappedStakeHolder = _mapper.Map<List<StakeHolder>>(request.StakeHolders);
+                var mappedStakeHolders = _mapper.Map<List<StakeHolder>>(request.StakeHolders);
 
-                foreach (var stakHolder in mappedStakeHolder)
+                foreach (var stakHolder in mappedStakeHolders)
                 {
                     stakHolder.DonorId = donorEntity.Id;
 
