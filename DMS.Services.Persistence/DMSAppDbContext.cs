@@ -25,6 +25,8 @@ namespace DMS.Services.Persistence
 
         public DbSet<Centre> CentreInfo { get; set; }
 
+        public DbSet<StakeHolder> StakeHolderInfo { get; set; }
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
