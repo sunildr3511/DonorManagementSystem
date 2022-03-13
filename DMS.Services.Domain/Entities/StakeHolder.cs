@@ -7,6 +7,9 @@ namespace DMS.Services.Domain.Entities
         public int Id { get; set; }
 
         public int DonorId { get; set; }
+
+        public string DecisionMakingRole { get; set; }
+        public string DonorRelationShip { get; set; }
         public string Salutation { get; set; }
         public string Name { get; set; }
         public string Designation { get; set; }

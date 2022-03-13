@@ -49,6 +49,8 @@ namespace DMS.Services.Application.Features
                     var @stakeHolderInfo = await _stakeHolderRepo.AddAsync(new StakeHolder
                     {
                         DonorId = donorEntity.Id,
+                        DecisionMakingRole = stakHolder.DecisionMakingRole,
+                        DonorRelationShip = stakHolder.DonorRelationShip,
                         Salutation = stakHolder.Salutation,
                         Name = stakHolder.Name,
                         Designation = stakHolder.Designation,
