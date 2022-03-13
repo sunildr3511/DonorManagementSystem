@@ -1,9 +1,6 @@
-﻿using DMS.Services.Application.Features.Donor.Commands.CreateDonor;
+﻿using DMS.Services.Application.Features;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DMS.Services.API.Controllers
@@ -19,7 +16,7 @@ namespace DMS.Services.API.Controllers
         }
 
         [HttpPost("add", Name = "AddDonor")]
-        public async Task<ActionResult<DonorVM>> AddDonor([FromForm] DonorCreateCommand donorCreateCommand)
+        public async Task<ActionResult<DonorVM>> AddDonor([FromBody] DonorCreateCommand donorCreateCommand)
         {
             var id = await _mediator.Send(donorCreateCommand);
 

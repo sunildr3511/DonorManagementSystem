@@ -33,7 +33,8 @@ namespace DMS.Services.Persistence.Repositories
                 Salutation = results.Where(x => x.Name == "Salutation").Select(p => p.Value),
                 SourceOfPayment = results.Where(x => x.Name == "SourceOfPayment").Select(p => p.Value),
                 Purpose = results.Where(x => x.Name == "Purpose").Select(p => p.Value),
-                Documents = results.Where(x => x.Name == "Documents").Select(p => p.Value)
+                Documents = results.Where(x => x.Name == "Documents").Select(p => p.Value),
+                Roles = results.Where(x => x.Name == "Role").Select(p => p.Value)
 
             };
 

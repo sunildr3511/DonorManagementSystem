@@ -7,18 +7,18 @@ namespace DMS.Services.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class MasterDataController : Controller
+    public class CentreDataController : Controller
     {
         private readonly IMediator _mediator;
-        public MasterDataController(IMediator mediator)
+        public CentreDataController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        [HttpGet("all", Name = "GetAllMasterData")]
-        public async Task<ActionResult<MasterDataListVM>> GetAllMasterData()
+        [HttpGet("all", Name = "GetCentres")]
+        public async Task<ActionResult<CentreDataVM>> GetCentres([FromQuery] int locationId)
         {
-            var result = await _mediator.Send(new MasterDataListQuery());
+            var result = await _mediator.Send(new CentreDataListQuery { Id = locationId });
 
             return Ok(result);
         }

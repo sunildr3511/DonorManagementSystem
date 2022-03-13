@@ -1,9 +1,6 @@
 ﻿using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace DMS.Services.Application.Features.MasterData.Query.GetAllMasterData
+namespace DMS.Services.Application.Features
 {
     public class MasterDataListQuery : IRequest<MasterDataListVM>
     {

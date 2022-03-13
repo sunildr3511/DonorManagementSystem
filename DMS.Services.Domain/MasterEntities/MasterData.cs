@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DMS.Services.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -24,6 +25,10 @@ namespace DMS.Services.Domain.MasterEntities
         public IEnumerable<string> Purpose { get; set; }
 
         public IEnumerable<string> Documents { get; set; }
+
+        public IEnumerable<string> Roles { get; set; }
+
+        public List<Location> Locations { get; set; }
 
     }
 }

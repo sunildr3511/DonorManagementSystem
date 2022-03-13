@@ -21,6 +21,10 @@ namespace DMS.Services.Persistence
 
             services.AddScoped<ISystemConfigurationRepository, SystemConfigurationRepository>();
 
+            services.AddScoped<ILocationRepository, LocationRepository>();
+
+            services.AddScoped<ICentreRepository, CentreRepository>();
+
             return services;
         }
     }

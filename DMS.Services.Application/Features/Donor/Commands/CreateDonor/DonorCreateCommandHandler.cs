@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DMS.Services.Application.Features.Donor.Commands.CreateDonor
+namespace DMS.Services.Application.Features
 {
    public class DonorCreateCommandHandler : IRequestHandler<DonorCreateCommand, DonorVM>
     {
@@ -25,7 +25,7 @@ namespace DMS.Services.Application.Features.Donor.Commands.CreateDonor
             {
                 var donor = _mapper.Map<Domain.Entities.Donor>(request);
 
-                donor.DonorId = "DONOR_" + Guid.NewGuid().ToString();
+                donor.DonorId = "DNR_Location_001";
 
                 var @donorEntity = await _repository.AddAsync(donor);
 

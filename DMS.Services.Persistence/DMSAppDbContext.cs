@@ -21,6 +21,10 @@ namespace DMS.Services.Persistence
 
         public DbSet<Donor> DonorInfo { get; set; }
 
+        public DbSet<Location> LocationInfo { get; set; }
+
+        public DbSet<Centre> CentreInfo { get; set; }
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
