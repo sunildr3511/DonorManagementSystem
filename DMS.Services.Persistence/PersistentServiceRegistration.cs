@@ -25,6 +25,8 @@ namespace DMS.Services.Persistence
 
             services.AddScoped<ICentreRepository, CentreRepository>();
 
+            services.AddScoped<IDonorRepository, DonorRepository>();
+
             return services;
         }
     }

@@ -60,6 +60,8 @@ namespace DMS.Services.Application.MappingProfiles
             {
                 opt.MapFrom(src => Utilities.GetDocumentDataInBytes(src.Document));
             });
+
+            CreateMap<Donor, DonorListVM>().ReverseMap();
         }
 
         

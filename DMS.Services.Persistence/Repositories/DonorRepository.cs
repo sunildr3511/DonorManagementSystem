@@ -1,8 +1,12 @@
 ﻿using DMS.Services.Application.Contracts.Persistence;
+using DMS.Services.Application.Features;
 using DMS.Services.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace DMS.Services.Persistence.Repositories
 {
@@ -13,6 +17,40 @@ namespace DMS.Services.Persistence.Repositories
         public DonorRepository(DMSAppDbContext dmsAppDBContext) : base(dmsAppDBContext)
         {
             _dmsAppDBContext = dmsAppDBContext;
+        }
+
+        public async Task<List<Donor>> GetAllDonors()
+        {
+            var result = await _dmsAppDBContext.DonorInfo
+                                         .FromSqlRaw<Donor>($"SELECT Id,DonorId,Type,Name,[PanCard],[Category],[ReferedBy],[RelationShipManager],[SourceOfPayment],[Purpose],[Location],[Centre],[Comment],[FollowUpDate] FROM [DonorInfo]")
+                                         .Select(p => new Donor
+                                         {
+                                             Id = p.Id,
+                                             DonorId = p.DonorId,
+                                             Type = p.Type,
+                                             Name=p.Name,
+                                             PanCard =p.PanCard,
+                                             Category = p.Category,
+                                             ReferedBy =p.ReferedBy,
+                                             RelationShipManager =p.RelationShipManager,
+                                             SourceOfPayment =p.SourceOfPayment,
+                                             Purpose=p.Purpose,
+                                             Location=p.Location,
+                                             Centre= p.Centre,
+                                             Comment=p.Comment,
+                                             FollowUpDate=p.FollowUpDate
+                                         }).ToListAsync<Donor>();
+
+            return result;
+        }
+
+        public async Task<int> GetMaxId()
+        {
+            var itemsExist = await _dmsAppDBContext.DonorInfo.AnyAsync();
+
+            int maxDonorId = (!itemsExist) ? 1 : await _dmsAppDBContext.DonorInfo.MaxAsync(x => x.Id) + 1;
+
+            return maxDonorId;
         }
     }
 }

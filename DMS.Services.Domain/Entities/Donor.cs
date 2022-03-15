@@ -16,8 +16,8 @@ namespace DMS.Services.Domain.Entities
         public string RelationShipManager { get; set; }
         public string SourceOfPayment { get; set; }
         public string Purpose { get; set; }
-        public string Location { get; set; }
-        public string Centre { get; set; }
+        public int Location { get; set; }
+        public int Centre { get; set; }
         public string Comment { get; set; }
         public DateTime FollowUpDate { get; set; }
     }

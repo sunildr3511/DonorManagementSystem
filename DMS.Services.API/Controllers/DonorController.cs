@@ -1,6 +1,7 @@
 ﻿using DMS.Services.Application.Features;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace DMS.Services.API.Controllers
@@ -29,6 +30,15 @@ namespace DMS.Services.API.Controllers
             var id = await _mediator.Send(donorDocumentCreateCommand);
 
             return Ok(id);
+        }
+
+        [HttpGet("allDonors", Name = "GetAllDonors")]
+        public async Task<ActionResult<List<DonorListVM>>> GetAllDonors()
+        {
+            var result = await _mediator.Send(new DonorListQuery());
+
+            return Ok(result);
+
         }
     }
 }

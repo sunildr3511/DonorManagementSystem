@@ -12,13 +12,16 @@ namespace DMS.Services.Application.Features
     public class DonorCreateCommandHandler : IRequestHandler<DonorCreateCommand, DonorVM>
     {
         private readonly IMapper _mapper;
-        private readonly IAsyncRepository<Donor> _repository;
+        private readonly IAsyncRepository<Domain.Entities.Donor> _repository;
         private readonly IAsyncRepository<StakeHolder> _stakeHolderRepo;
-        public DonorCreateCommandHandler(IMapper mapper, IAsyncRepository<Donor> repository, IAsyncRepository<StakeHolder> stakeHolderRepo)
+        private readonly IDonorRepository _donorRepository;
+
+        public DonorCreateCommandHandler(IMapper mapper, IAsyncRepository<Domain.Entities.Donor> repository, IAsyncRepository<StakeHolder> stakeHolderRepo,IDonorRepository donorRepository)
         {
             _mapper = mapper;
             _repository = repository;
             _stakeHolderRepo = stakeHolderRepo;
+            _donorRepository = donorRepository;
         }
 
         public async Task<DonorVM> Handle(DonorCreateCommand request, CancellationToken cancellationToken)
@@ -27,7 +30,9 @@ namespace DMS.Services.Application.Features
             {
                 var mappedDonor= _mapper.Map<DMS.Services.Domain.Entities.Donor>(request);
 
-                mappedDonor.DonorId = "DNR_" + request.Location + "_" + request.Centre;
+                var maxDonorId = await _donorRepository.GetMaxId();
+
+                mappedDonor.DonorId = "DNR_Location_" + maxDonorId;
 
                 var @donorEntity = await _repository.AddAsync(mappedDonor);
 
