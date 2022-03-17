@@ -20,5 +20,7 @@ namespace DMS.Services.Domain.Entities
         public int Centre { get; set; }
         public string Comment { get; set; }
         public DateTime FollowUpDate { get; set; }
+
+        public string DonorType { get; set; }
     }
 }

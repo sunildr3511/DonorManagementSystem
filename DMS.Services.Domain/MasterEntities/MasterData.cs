@@ -30,5 +30,7 @@ namespace DMS.Services.Domain.MasterEntities
 
         public List<Location> Locations { get; set; }
 
+        public IEnumerable<string> DonationReceived { get; set; }
+
     }
 }

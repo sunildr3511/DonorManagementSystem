@@ -16,7 +16,7 @@ namespace DMS.Services.API.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("add", Name = "AddDonor")]
+        [HttpPost("addDonorProfile", Name = "AddDonorProfile")]
         public async Task<ActionResult<DonorVM>> AddDonor([FromBody] DonorCreateCommand donorCreateCommand)
         {
             var id = await _mediator.Send(donorCreateCommand);
@@ -39,6 +39,14 @@ namespace DMS.Services.API.Controllers
 
             return Ok(result);
 
+        }
+
+        [HttpPost("addKindDonor", Name = "AddKindDonor")]
+        public async Task<ActionResult<DonorVM>> AddKindDonor([FromBody] KindDonorCreateCommand kindDonorCreateCommand)
+        {
+            var id = await _mediator.Send(kindDonorCreateCommand);
+
+            return Ok(id);
         }
     }
 }

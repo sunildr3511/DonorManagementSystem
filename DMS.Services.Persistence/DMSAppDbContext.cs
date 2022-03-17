@@ -29,6 +29,8 @@ namespace DMS.Services.Persistence
 
         public DbSet<DonorDocument> DocumentInfo { get; set; }
 
+        public DbSet<KindDonor> KindDonorInfo { get; set; }
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
