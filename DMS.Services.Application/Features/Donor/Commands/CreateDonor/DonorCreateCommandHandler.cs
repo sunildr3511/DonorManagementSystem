@@ -28,11 +28,15 @@ namespace DMS.Services.Application.Features
         {
             try
             {
+
+
                 var mappedDonor= _mapper.Map<DMS.Services.Domain.Entities.Donor>(request);
 
                 var maxDonorId = await _donorRepository.GetMaxId();
 
                 mappedDonor.DonorId = "DNR_Location_" + maxDonorId;
+
+                mappedDonor.DonorType = "DonorProfile";
 
                 var @donorEntity = await _repository.AddAsync(mappedDonor);
 

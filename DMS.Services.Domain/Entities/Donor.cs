@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace DMS.Services.Domain.Entities
@@ -20,7 +22,6 @@ namespace DMS.Services.Domain.Entities
         public int Centre { get; set; }
         public string Comment { get; set; }
         public DateTime FollowUpDate { get; set; }
-
         public string DonorType { get; set; }
     }
 }
