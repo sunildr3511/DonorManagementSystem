@@ -36,7 +36,7 @@ namespace DMS.Services.Application.Features
 
                 mappedDonor.DonorId = "DNR_Location_" + maxDonorId;
 
-                mappedDonor.DonorType = "DonorProfile";
+                mappedDonor.DonorType = 1;
 
                 var @donorEntity = await _repository.AddAsync(mappedDonor);
 
