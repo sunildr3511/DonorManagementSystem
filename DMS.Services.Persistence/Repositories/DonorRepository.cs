@@ -22,7 +22,7 @@ namespace DMS.Services.Persistence.Repositories
         public async Task<List<Donor>> GetAllDonors()
         {
             var result = await _dmsAppDBContext.DonorInfo
-                                                .FromSqlRaw<Donor>($"SELECT Id,DonorId,Type,Name,[Location],[Centre],[FollowUpDate], 1 AS DonorType FROM [DonorInfo] UNION ALL " +
+                                                .FromSqlRaw<Donor>($"SELECT Id,DonorId,Type,Name,[Location],[Centre],[FollowUpDate], DonorType FROM [DonorInfo] UNION ALL " +
                                             $"SELECT Id,DonorId,'' AS [Type],FirstName + '-' + LastName AS [Name], '' AS [Location],'' AS [Centre],'' AS [FollowUpDate],2 As DonorType FROM [KindDonorInfo]"
                                                 
                                          )
