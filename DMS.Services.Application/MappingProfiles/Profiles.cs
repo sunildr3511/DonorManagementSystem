@@ -108,6 +108,10 @@ namespace DMS.Services.Application.MappingProfiles
             {
                 opt.MapFrom(src => src.FollowUpDate);
             });
+
+            CreateMap<Donor, DonorDeleteCommand>().ReverseMap();
+
+            CreateMap<StakeHolder, StakeHolderDeleteCommand>().ReverseMap();
         }
 
         

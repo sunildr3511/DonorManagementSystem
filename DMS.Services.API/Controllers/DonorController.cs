@@ -56,5 +56,15 @@ namespace DMS.Services.API.Controllers
 
             return Ok(pole);
         }
+
+        [HttpDelete("delete", Name = "DeleteDonor")]
+        public async Task<ActionResult> DeleteDonor([FromBody] DonorDeleteCommand donorDeleteCommand)
+        {
+            await _mediator.Send(donorDeleteCommand);
+
+            return NoContent();
+        }
+
+        
     }
 }

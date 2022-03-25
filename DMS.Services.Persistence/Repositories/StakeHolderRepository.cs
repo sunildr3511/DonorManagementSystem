@@ -18,6 +18,16 @@ namespace DMS.Services.Persistence.Repositories
             _dmsAppDBContext = dmsAppDBContext;
         }
 
+        public async Task DeleteDonorStakeHolders(int donorId)
+        {
+            var stakeHolders = await _dmsAppDBContext.StakeHolderInfo.Where(p => p.DonorId == donorId).Select(p => p).ToListAsync<StakeHolder>();
+
+             _dmsAppDBContext.StakeHolderInfo.RemoveRange(stakeHolders);
+            _dmsAppDBContext.SaveChanges();
+
+
+        }
+
         public async Task<List<StakeHolder>> GetStakeHoldersForDonor(int donorId)
         {
             var stakeHolders = await _dmsAppDBContext.StakeHolderInfo.Where(x=>x.DonorId == donorId).Select(p=>p).ToListAsync<StakeHolder>();

@@ -9,5 +9,7 @@ namespace DMS.Services.Application.Contracts.Persistence
    public interface IStakeHolderRepository : IAsyncRepository<StakeHolder>
     {
         Task<List<StakeHolder>> GetStakeHoldersForDonor(int donorId);
+
+        Task DeleteDonorStakeHolders(int donorId);
     }
 }
