@@ -25,5 +25,13 @@ namespace DMS.Services.API.Controllers
 
             return NoContent();
         }
+
+        [HttpPost("add", Name = "AddKindDonor")]
+        public async Task<ActionResult<DonorVM>> AddKindDonor([FromBody] KindDonorCreateCommand kindDonorCreateCommand)
+        {
+            var id = await _mediator.Send(kindDonorCreateCommand);
+
+            return Ok(id);
+        }
     }
 }
