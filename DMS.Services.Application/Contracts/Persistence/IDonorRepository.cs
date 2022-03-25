@@ -12,5 +12,7 @@ namespace DMS.Services.Application.Contracts.Persistence
         Task<int> GetMaxId();
 
         Task<List<Donor>> GetAllDonors();
+
+      
     }
 }

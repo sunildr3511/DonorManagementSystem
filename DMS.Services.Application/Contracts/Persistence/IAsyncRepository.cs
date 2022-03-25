@@ -16,6 +16,6 @@ namespace DMS.Services.Application.Contracts.Persistence
         Task<IReadOnlyList<T>> ListAllAsync();
 
         Task<T> GetByIdAsync(int id);
-
+        
     }
 }

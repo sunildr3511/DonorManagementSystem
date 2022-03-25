@@ -29,6 +29,8 @@ namespace DMS.Services.Persistence
 
             services.AddScoped<IKindDonorRepository, KindDonorRepository>();
 
+            services.AddScoped<IStakeHolderRepository, StakeHolderRepository>();
+
             return services;
         }
     }
