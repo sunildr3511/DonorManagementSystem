@@ -29,32 +29,14 @@ namespace DMS.Services.Application.Features
             try
             {
                 DonorDetailVM mappedDonorInfo = new DonorDetailVM();
+               
                 if (request.DonorTypeId == 2)
                 {
-                    var kindDonorInfo = await _kindDonorRepository.GetByIdAsync(request.Id);
-
-                    if (kindDonorInfo == null)
-                    {
-                        throw new Exceptions.NotFoundException(nameof(Domain.Entities.KindDonor), Convert.ToString(request.Id));
-                    }
-
-
-                    mappedDonorInfo = _mapper.Map<DonorDetailVM>(kindDonorInfo);
+                    mappedDonorInfo = await GetKindDonor(request, mappedDonorInfo);
                 }
-                else
+                else if( request.DonorTypeId ==1)
                 {
-                    var donorInfo = await _donorRepository.GetByIdAsync(request.Id);
-
-                    if(donorInfo == null)
-                    {
-                        throw new Exceptions.NotFoundException(nameof(Domain.Entities.Donor), Convert.ToString(request.Id));
-                    }
-
-                    var stakeHolders = await _stakeHolderRepo.GetStakeHoldersForDonor(donorInfo.Id);
-
-                     mappedDonorInfo = _mapper.Map<DonorDetailVM>(donorInfo);
-
-                    mappedDonorInfo.StakeHolders = _mapper.Map<List<StakeHolderVM>>(stakeHolders);
+                    mappedDonorInfo = await GetDonorProfileInfo(request, mappedDonorInfo);
                 }
 
                 return mappedDonorInfo;
@@ -63,6 +45,38 @@ namespace DMS.Services.Application.Features
             {
                 throw new Exception(ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
+        }
+
+        private async Task<DonorDetailVM> GetDonorProfileInfo(GetDonorDetailQuery request, DonorDetailVM mappedDonorInfo)
+        {
+            var donorInfo = await _donorRepository.GetByIdAsync(request.Id);
+
+            if (donorInfo == null)
+            {
+                throw new Exceptions.NotFoundException(nameof(Domain.Entities.Donor), Convert.ToString(request.Id));
+            }
+
+            var stakeHolders = await _stakeHolderRepo.GetStakeHoldersForDonor(donorInfo.Id);
+
+            mappedDonorInfo = _mapper.Map<DonorDetailVM>(donorInfo);
+
+            mappedDonorInfo.StakeHolders = _mapper.Map<List<StakeHolderVM>>(stakeHolders);
+
+            return mappedDonorInfo;
+        }
+
+        private async Task<DonorDetailVM> GetKindDonor(GetDonorDetailQuery request, DonorDetailVM mappedDonorInfo)
+        {
+            var kindDonorInfo = await _kindDonorRepository.GetByIdAsync(request.Id);
+
+            if (kindDonorInfo == null)
+            {
+                throw new Exceptions.NotFoundException(nameof(Domain.Entities.KindDonor), Convert.ToString(request.Id));
+            }
+
+            mappedDonorInfo = _mapper.Map<DonorDetailVM>(kindDonorInfo);
+
+            return mappedDonorInfo;
         }
     }
 }
