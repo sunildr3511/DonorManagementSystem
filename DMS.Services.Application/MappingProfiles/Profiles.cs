@@ -146,7 +146,7 @@ namespace DMS.Services.Application.MappingProfiles
                 opt.MapFrom(src => src.Description);
             });
 
-
+            CreateMap<KindDonor, KindDonorDeleteCommand>().ReverseMap();
         }
 
 

@@ -65,6 +65,13 @@ namespace DMS.Services.API.Controllers
             return NoContent();
         }
 
-        
+        [HttpDelete("deleteKindDonor", Name = "DeleteKindDonor")]
+        public async Task<ActionResult> DeleteKindDonor([FromBody] KindDonorDeleteCommand kindDonorDeleteCommand)
+        {
+            await _mediator.Send(kindDonorDeleteCommand);
+
+            return NoContent();
+        }
+
     }
 }
