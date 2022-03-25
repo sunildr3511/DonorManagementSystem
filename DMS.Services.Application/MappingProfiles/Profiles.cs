@@ -147,6 +147,9 @@ namespace DMS.Services.Application.MappingProfiles
             });
 
             CreateMap<KindDonor, KindDonorDeleteCommand>().ReverseMap();
+            CreateMap<Donor, DonorUpdateCommand>().ReverseMap();
+            CreateMap<KindDonor, KindDonorUpdateCommand>().ReverseMap();
+            CreateMap<StakeHolder, StakeHolderUpdateCommand>().ReverseMap();
         }
 
 

@@ -25,5 +25,13 @@ namespace DMS.Services.API.Controllers
 
             return NoContent();
         }
+
+        [HttpPut("update", Name = "UpdateStakeHolder")]
+        public async Task<ActionResult> UpdateStakeHolder([FromBody] StakeHolderUpdateCommand stakeHolderUpdateCommand)
+        {
+            await _mediator.Send(stakeHolderUpdateCommand);
+
+            return NoContent();
+        }
     }
 }

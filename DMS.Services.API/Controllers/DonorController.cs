@@ -57,7 +57,13 @@ namespace DMS.Services.API.Controllers
             return NoContent();
         }
 
-       
+        [HttpPut("update", Name = "UpdateDonor")]
+        public async Task<ActionResult> UpdateDonor([FromBody] DonorUpdateCommand donorUpdateCommand)
+        {
+            await _mediator.Send(donorUpdateCommand);
+
+            return NoContent();
+        }
 
     }
 }
