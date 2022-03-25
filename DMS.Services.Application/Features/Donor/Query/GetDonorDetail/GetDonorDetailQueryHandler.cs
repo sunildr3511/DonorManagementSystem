@@ -30,7 +30,7 @@ namespace DMS.Services.Application.Features
             {
                 DonorDetailVM mappedDonorInfo = new DonorDetailVM();
                
-                if (request.DonorTypeId == 2)
+                if (request.DonorTypeId == 0)
                 {
                     mappedDonorInfo = await GetKindDonor(request, mappedDonorInfo);
                 }

@@ -21,31 +21,20 @@ namespace DMS.Services.Persistence.Repositories
 
         public async Task<List<Donor>> GetAllDonors()
         {
-            var result = await _dmsAppDBContext.DonorInfo
-                                                .FromSqlRaw<Donor>($"SELECT Id,DonorId,Type,Name,[Location],[Centre],[FollowUpDate], DonorType FROM [DonorInfo] UNION ALL " +
-                                            $"SELECT Id,DonorId,'' AS [Type],FirstName + '-' + LastName AS [Name], '' AS [Location],'' AS [Centre],'' AS [FollowUpDate],2 As DonorType FROM [KindDonorInfo]"
-                                                
-                                         )
-                                         .Select(p => new Donor
-                                         {
-                                             Id = p.Id,
-                                             DonorId = p.DonorId,
-                                             Type = p.Type,
-                                             Name=p.Name,
-                                             //PanCard =p.PanCard,
-                                             //Category = p.Category,
-                                             //ReferedBy =p.ReferedBy,
-                                             //RelationShipManager =p.RelationShipManager,
-                                             //SourceOfPayment =p.SourceOfPayment,
-                                             //Purpose=p.Purpose,
-                                             Location=p.Location,
-                                             Centre= p.Centre,
-                                             //Comment=p.Comment,
-                                             FollowUpDate=p.FollowUpDate,
-                                             DonorType =p.DonorType
-                                         }).ToListAsync<Donor>();
+            var donorsInfo = await _dmsAppDBContext.DonorInfo.Select(p => new Donor {
 
-            return result;
+                Id = p.Id,
+                DonorId = p.DonorId,
+                Type = p.Type,
+                Name = p.Name,
+                Location = p.Location,
+                Centre = p.Centre,
+                FollowUpDate = p.FollowUpDate,
+                DonorType = p.DonorType
+
+            }).ToListAsync<Donor>();
+
+            return donorsInfo;
         }
 
         public async Task<int> GetMaxId()

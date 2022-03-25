@@ -14,11 +14,13 @@ namespace DMS.Services.Application.Features
     {
         private readonly IMapper _mapper;
         private readonly IDonorRepository _repository;
+        private readonly IKindDonorRepository _kindDonorRepository;
         private readonly ILogger<DonorListQueryHandler> _logger;
-        public DonorListQueryHandler(IMapper mapper, IDonorRepository repository, ILogger<DonorListQueryHandler> logger)
+        public DonorListQueryHandler(IMapper mapper, IDonorRepository repository,IKindDonorRepository kindDonorRepository, ILogger<DonorListQueryHandler> logger)
         {
             _mapper = mapper;
             _repository = repository;
+            _kindDonorRepository = kindDonorRepository;
             _logger = logger;
         }
         public async Task<List<DonorListVM>> Handle(DonorListQuery request, CancellationToken cancellationToken)
@@ -27,7 +29,13 @@ namespace DMS.Services.Application.Features
             {
                 var allDonors = await _repository.GetAllDonors();
 
-                return _mapper.Map<List<DonorListVM>>(allDonors);
+                List<DonorListVM> donorListVMs=  _mapper.Map<List<DonorListVM>>(allDonors);
+
+                var allKindDonors = await _kindDonorRepository.GetAllKindDonors();
+
+                donorListVMs.AddRange(_mapper.Map<List<DonorListVM>>(allKindDonors));
+
+                return donorListVMs;
             }
             catch (Exception ex)
             {

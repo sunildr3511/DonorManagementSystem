@@ -9,5 +9,7 @@ namespace DMS.Services.Application.Contracts.Persistence
    public interface IKindDonorRepository : IAsyncRepository<KindDonor>
     {
         Task<int> GetMaxId();
+
+        Task<List<KindDonor>> GetAllKindDonors();
     }
 }
