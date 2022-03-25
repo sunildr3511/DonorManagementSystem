@@ -8,5 +8,7 @@ namespace DMS.Services.Application.Features
    public class GetDonorDetailQuery : IRequest<DonorDetailVM>
     {
         public int Id { get; set; }
+
+        public int DonorTypeId { get; set; }
     }
 }

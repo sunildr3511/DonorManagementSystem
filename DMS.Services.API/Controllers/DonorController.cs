@@ -50,9 +50,9 @@ namespace DMS.Services.API.Controllers
         }
 
         [HttpGet("{id}", Name = "GetDonorById")]
-        public async Task<ActionResult<DonorDetailVM>> GetDonorById(int id)
+        public async Task<ActionResult<DonorDetailVM>> GetDonorById(int id, int donorTypeId)
         {
-            var pole = await _mediator.Send(new GetDonorDetailQuery { Id = id });
+            var pole = await _mediator.Send(new GetDonorDetailQuery { Id = id, DonorTypeId= donorTypeId });
 
             return Ok(pole);
         }

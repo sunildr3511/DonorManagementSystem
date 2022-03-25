@@ -14,25 +14,48 @@ namespace DMS.Services.Application.Features
     {
         private readonly IMapper _mapper;
         private readonly IAsyncRepository<Domain.Entities.Donor> _donorRepository;
+        private readonly IKindDonorRepository _kindDonorRepository;
         private readonly IStakeHolderRepository _stakeHolderRepo;
 
-        public GetDonorDetailQueryHandler(IMapper mapper, IAsyncRepository<Domain.Entities.Donor> donorRepository, IStakeHolderRepository stakeHolderRepo)
+        public GetDonorDetailQueryHandler(IMapper mapper, IAsyncRepository<Domain.Entities.Donor> donorRepository, IStakeHolderRepository stakeHolderRepo,IKindDonorRepository kindDonorRepository)
         {
             _mapper = mapper;
             _donorRepository = donorRepository;
             _stakeHolderRepo = stakeHolderRepo;
+            _kindDonorRepository = kindDonorRepository;
         }
         public async Task<DonorDetailVM> Handle(GetDonorDetailQuery request, CancellationToken cancellationToken)
         {
             try
             {
-                var donorInfo = await _donorRepository.GetByIdAsync(request.Id);
+                DonorDetailVM mappedDonorInfo = new DonorDetailVM();
+                if (request.DonorTypeId == 2)
+                {
+                    var kindDonorInfo = await _kindDonorRepository.GetByIdAsync(request.Id);
 
-                var stakeHolders = await _stakeHolderRepo.GetStakeHoldersForDonor(donorInfo.Id);
+                    if (kindDonorInfo == null)
+                    {
+                        throw new Exceptions.NotFoundException(nameof(Domain.Entities.KindDonor), Convert.ToString(request.Id));
+                    }
 
-                var mappedDonorInfo= _mapper.Map<DonorDetailVM>(donorInfo);
 
-                mappedDonorInfo.StakeHolders = _mapper.Map<List<StakeHolderVM>>(stakeHolders); ;
+                    mappedDonorInfo = _mapper.Map<DonorDetailVM>(kindDonorInfo);
+                }
+                else
+                {
+                    var donorInfo = await _donorRepository.GetByIdAsync(request.Id);
+
+                    if(donorInfo == null)
+                    {
+                        throw new Exceptions.NotFoundException(nameof(Domain.Entities.Donor), Convert.ToString(request.Id));
+                    }
+
+                    var stakeHolders = await _stakeHolderRepo.GetStakeHoldersForDonor(donorInfo.Id);
+
+                     mappedDonorInfo = _mapper.Map<DonorDetailVM>(donorInfo);
+
+                    mappedDonorInfo.StakeHolders = _mapper.Map<List<StakeHolderVM>>(stakeHolders);
+                }
 
                 return mappedDonorInfo;
             }

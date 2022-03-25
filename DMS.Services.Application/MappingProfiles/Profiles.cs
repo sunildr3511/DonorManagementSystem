@@ -112,8 +112,43 @@ namespace DMS.Services.Application.MappingProfiles
             CreateMap<Donor, DonorDeleteCommand>().ReverseMap();
 
             CreateMap<StakeHolder, StakeHolderDeleteCommand>().ReverseMap();
+
+
+            CreateMap<DonorDetailVM, KindDonor>().ReverseMap().ReverseMap().ForMember(x => x.Id, opt =>
+            {
+                opt.MapFrom(src => src.Id);
+            }).ForMember(x => x.DonorId, opt =>
+            {
+                opt.MapFrom(src => src.DonorId);
+            }).ForMember(x => x.FirstName, opt =>
+            {
+                opt.MapFrom(src => src.FirstName);
+            }).ForMember(x => x.LastName, opt =>
+            {
+                opt.MapFrom(src => src.LastName);
+            }).ForMember(x => x.ContactNo, opt =>
+            {
+                opt.MapFrom(src => src.ContactNo);
+            }).ForMember(x => x.Email, opt =>
+            {
+                opt.MapFrom(src => src.Email);
+            }).ForMember(x => x.Address, opt =>
+            {
+                opt.MapFrom(src => src.Address);
+            }).ForMember(x => x.DonationReceived, opt =>
+            {
+                opt.MapFrom(src => src.DonationReceived);
+            }).ForMember(x => x.Quantity, opt =>
+            {
+                opt.MapFrom(src => src.Quantity);
+            }).ForMember(x => x.Description, opt =>
+            {
+                opt.MapFrom(src => src.Description);
+            });
+
+
         }
 
-        
+
     }
 }
