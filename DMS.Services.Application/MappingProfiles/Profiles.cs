@@ -63,7 +63,10 @@ namespace DMS.Services.Application.MappingProfiles
 
             CreateMap<Donor, DonorListVM>().ReverseMap();
 
-            CreateMap<KindDonor, DonorListVM>().ReverseMap();
+            CreateMap<DonorListVM, KindDonor>().ReverseMap().ForMember(x => x.Name, opt =>
+               {
+                   opt.MapFrom(src => src.FirstName + "-" + src.LastName);
+               });
 
             CreateMap<KindDonor, KindDonorCreateCommand>().ReverseMap();
 
