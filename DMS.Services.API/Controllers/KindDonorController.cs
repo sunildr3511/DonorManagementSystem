@@ -19,9 +19,9 @@ namespace DMS.Services.API.Controllers
         }
 
         [HttpDelete("delete", Name = "DeleteKindDonor")]
-        public async Task<ActionResult> DeleteKindDonor([FromBody] KindDonorDeleteCommand kindDonorDeleteCommand)
+        public async Task<ActionResult> DeleteKindDonor(int id)
         {
-            await _mediator.Send(kindDonorDeleteCommand);
+            await _mediator.Send(new KindDonorDeleteCommand { Id=id});
 
             return NoContent();
         }

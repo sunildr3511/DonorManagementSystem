@@ -19,9 +19,9 @@ namespace DMS.Services.API.Controllers
         }
 
         [HttpDelete("delete", Name = "DeleteStakeHolder")]
-        public async Task<ActionResult> DeleteStakeHolder([FromBody] StakeHolderDeleteCommand stakeHolderDeleteCommand)
+        public async Task<ActionResult> DeleteStakeHolder(int id)
         {
-            await _mediator.Send(stakeHolderDeleteCommand);
+            await _mediator.Send(new StakeHolderDeleteCommand { Id=id});
 
             return NoContent();
         }
