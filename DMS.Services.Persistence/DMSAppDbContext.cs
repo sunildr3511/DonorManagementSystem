@@ -33,6 +33,8 @@ namespace DMS.Services.Persistence
 
         public DbSet<CenterBasedBudgetInfo> CenterBasedBudgetInfo { get; set; }
 
+        public DbSet<DonorBasedBudgetInfo> DonorBasedBudgetInfo { get; set; }
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
