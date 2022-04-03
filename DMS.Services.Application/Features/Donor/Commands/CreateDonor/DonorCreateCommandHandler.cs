@@ -4,6 +4,7 @@ using DMS.Services.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -57,9 +58,14 @@ namespace DMS.Services.Application.Features
 
                 var resValue = await _centerBasedBudgetRepository.FetchCenterBasedBudgetInfo(donorEntity.Location, donorEntity.Centre, donorEntity.Purpose);
 
-                var mappedCenterBasedData = _mapper.Map<List<CenterBasedBudgetVM>>(resValue);
+                 var mappedCenterBasedData = _mapper.Map<List<CenterBasedBudgetVM>>(resValue);
 
-                return new DonorVM { Id = @donorEntity.Id, DonorId = donorEntity.DonorId, CenterBasedBudgetVM = mappedCenterBasedData };
+                return new DonorVM {
+                                        Id = @donorEntity.Id,
+                                        DonorId = donorEntity.DonorId,
+                                        CenterBasedBudgetVM = mappedCenterBasedData,
+                                        TotalBudget = mappedCenterBasedData.Sum(x => x.BudgetAmount)
+                                   };
             }
             catch (Exception ex)
             {
