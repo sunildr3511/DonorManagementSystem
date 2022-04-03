@@ -15,13 +15,19 @@ namespace DMS.Services.Application.Features
         private readonly IAsyncRepository<Domain.Entities.Donor> _repository;
         private readonly IAsyncRepository<StakeHolder> _stakeHolderRepo;
         private readonly IDonorRepository _donorRepository;
+        private readonly ICenterBasedBudgetRepository _centerBasedBudgetRepository;
 
-        public DonorCreateCommandHandler(IMapper mapper, IAsyncRepository<Domain.Entities.Donor> repository, IAsyncRepository<StakeHolder> stakeHolderRepo,IDonorRepository donorRepository)
+        public DonorCreateCommandHandler(IMapper mapper,
+                                        IAsyncRepository<Domain.Entities.Donor> repository,
+                                        IAsyncRepository<StakeHolder> stakeHolderRepo,
+                                        IDonorRepository donorRepository,
+                                        ICenterBasedBudgetRepository centerBasedBudgetRepository)
         {
             _mapper = mapper;
             _repository = repository;
             _stakeHolderRepo = stakeHolderRepo;
             _donorRepository = donorRepository;
+            _centerBasedBudgetRepository = centerBasedBudgetRepository;
         }
 
         public async Task<DonorVM> Handle(DonorCreateCommand request, CancellationToken cancellationToken)
@@ -30,7 +36,7 @@ namespace DMS.Services.Application.Features
             {
 
 
-                var mappedDonor= _mapper.Map<DMS.Services.Domain.Entities.Donor>(request);
+                var mappedDonor = _mapper.Map<DMS.Services.Domain.Entities.Donor>(request);
 
                 var maxDonorId = await _donorRepository.GetMaxId();
 
@@ -49,7 +55,11 @@ namespace DMS.Services.Application.Features
                     await _stakeHolderRepo.AddAsync(stakHolder);
                 }
 
-                return new DonorVM { Id = @donorEntity.Id, DonorId = donorEntity.DonorId };
+                var resValue = await _centerBasedBudgetRepository.FetchCenterBasedBudgetInfo(donorEntity.Location, donorEntity.Centre, donorEntity.Purpose);
+
+                var mappedCenterBasedData = _mapper.Map<List<CenterBasedBudgetVM>>(resValue);
+
+                return new DonorVM { Id = @donorEntity.Id, DonorId = donorEntity.DonorId, CenterBasedBudgetVM = mappedCenterBasedData };
             }
             catch (Exception ex)
             {

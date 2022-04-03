@@ -9,5 +9,8 @@ namespace DMS.Services.Application.Features
         public int Id { get; set; }
 
         public string DonorId { get; set; }
+
+        public List<CenterBasedBudgetVM> CenterBasedBudgetVM { get; set; }
     }
+   
 }
