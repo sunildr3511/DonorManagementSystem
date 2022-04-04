@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DMS.Services.Application.Contracts.Persistence;
+using DMS.Services.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -24,10 +25,12 @@ namespace DMS.Services.Application.Features
         {
             try
             {
-                var mappedDonorBasedBudget = _mapper.Map<DMS.Services.Domain.Entities.DonorBasedBudgetInfo>(request);
+                var mappedDonorBasedBudgets = _mapper.Map<List<DonorBasedBudgetInfo>>(request.ListOfBudget);
 
-                await _repository.AddAsync(mappedDonorBasedBudget);
-
+                foreach (var donorBudget in mappedDonorBasedBudgets)
+                {
+                    await _repository.AddAsync(donorBudget);
+                }
                  return Unit.Value;
             }
             catch (Exception ex)

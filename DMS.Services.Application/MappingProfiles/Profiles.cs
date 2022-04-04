@@ -156,7 +156,7 @@ namespace DMS.Services.Application.MappingProfiles
             CreateMap<KindDonor, KindDonorUpdateCommand>().ReverseMap();
             CreateMap<StakeHolder, StakeHolderUpdateCommand>().ReverseMap();
             CreateMap<CenterBasedBudgetInfo, CenterBasedBudgetVM>().ReverseMap();
-            CreateMap<DonorBasedBudgetInfo, BudgetCreateCommand>().ReverseMap();
+            CreateMap<DonorBasedBudgetInfo, BudgetVM>().ReverseMap();
         }
 
 
