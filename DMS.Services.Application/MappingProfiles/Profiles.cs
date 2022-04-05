@@ -161,6 +161,7 @@ namespace DMS.Services.Application.MappingProfiles
             CreateMap<FamilyUnitSponsorProposal, DonorBasedFUSProposalVM>().ReverseMap();
             CreateMap<FamilyUnitSponsorProposal, FUSProposalUpdateCommad>().ReverseMap();
             CreateMap<FamilyUnitSponsorProposal, FUSProposalDeleteCommad>().ReverseMap();
+            CreateMap<FamilyUnitSponsorProposal, FUSProposalDetailVM>().ReverseMap();
         }
 
 

@@ -50,5 +50,13 @@ namespace DMS.Services.API.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("getfusById", Name = "GetfusById")]
+        public async Task<ActionResult<FUSProposalDetailVM>> GetFamilyUnitSponsorById(int proposalId)
+        {
+            var result = await _mediator.Send(new GetFUSProposalDetailQuery { ProposalId=proposalId });
+
+            return Ok(result);
+        }
     }
 }
