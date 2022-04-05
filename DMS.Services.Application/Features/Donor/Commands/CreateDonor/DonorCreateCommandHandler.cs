@@ -56,15 +56,9 @@ namespace DMS.Services.Application.Features
                     await _stakeHolderRepo.AddAsync(stakHolder);
                 }
 
-                var resValue = await _centerBasedBudgetRepository.FetchCenterBasedBudgetInfo(donorEntity.Location, donorEntity.Centre, donorEntity.Purpose);
-
-                 var mappedCenterBasedData = _mapper.Map<List<CenterBasedBudgetVM>>(resValue);
-
                 return new DonorVM {
                                         Id = @donorEntity.Id,
                                         DonorId = donorEntity.DonorId,
-                                        CenterBasedBudgetVM = mappedCenterBasedData,
-                                        TotalBudget = mappedCenterBasedData.Sum(x => x.BudgetAmount)
                                    };
             }
             catch (Exception ex)
