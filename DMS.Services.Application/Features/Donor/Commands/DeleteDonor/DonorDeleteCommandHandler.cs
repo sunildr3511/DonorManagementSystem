@@ -13,12 +13,14 @@ namespace DMS.Services.Application.Features
     {
         private readonly IDonorRepository _donorRepository;
         private readonly IStakeHolderRepository _stakeHolderRepository;
+        private readonly IDonorFUSProposalRepository _donorFUSProposalRepository;
         private readonly IMapper _mapper;
 
-        public DonorDeleteCommandHandler(IDonorRepository donorRepository,IStakeHolderRepository stakeHolderRepository,IMapper mapper)
+        public DonorDeleteCommandHandler(IDonorRepository donorRepository,IStakeHolderRepository stakeHolderRepository,IMapper mapper,IDonorFUSProposalRepository donorFUSProposalRepository)
         {
             _donorRepository = donorRepository;
             _stakeHolderRepository = stakeHolderRepository;
+            _donorFUSProposalRepository = donorFUSProposalRepository;
             _mapper = mapper;
         }
 
@@ -33,9 +35,11 @@ namespace DMS.Services.Application.Features
                     throw new Exceptions.NotFoundException(nameof(Domain.Entities.Donor), Convert.ToString(request.Id));
                 }
 
-               await _stakeHolderRepository.DeleteDonorStakeHolders(request.Id);
+               await _donorFUSProposalRepository.DeleteDonorProposals(request.Id);
 
-               _mapper.Map(request, donorToDelete, typeof(DonorDeleteCommand), typeof(Domain.Entities.Donor));
+                await _stakeHolderRepository.DeleteDonorStakeHolders(request.Id);
+
+                _mapper.Map(request, donorToDelete, typeof(DonorDeleteCommand), typeof(Domain.Entities.Donor));
 
                 await _donorRepository.DeleteAsync(donorToDelete);
 

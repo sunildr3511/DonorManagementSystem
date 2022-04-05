@@ -24,5 +24,15 @@ namespace DMS.Services.Persistence.Repositories
 
             return listOfProposalsForDonor;
         }
+
+        public async Task DeleteDonorProposals(int donorId)
+        {
+            var donorProposals = await _dmsAppDBContext.DonorFamilyUnitSponsorShipProposal.Where(p => p.DonorId == donorId).Select(p => p).ToListAsync<FamilyUnitSponsorProposal>();
+
+            _dmsAppDBContext.DonorFamilyUnitSponsorShipProposal.RemoveRange(donorProposals);
+            _dmsAppDBContext.SaveChanges();
+
+
+        }
     }
 }
