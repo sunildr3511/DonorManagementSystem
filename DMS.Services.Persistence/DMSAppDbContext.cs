@@ -35,6 +35,8 @@ namespace DMS.Services.Persistence
 
         public DbSet<DonorBasedBudgetInfo> DonorBasedBudgetInfo { get; set; }
 
+        public DbSet<FamilyUnitSponsorProposal> DonorFamilyUnitSponsorShipProposal { get; set; }
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>())
