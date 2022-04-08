@@ -16,19 +16,16 @@ namespace DMS.Services.Application.Features
         private readonly IAsyncRepository<Domain.Entities.Donor> _repository;
         private readonly IAsyncRepository<StakeHolder> _stakeHolderRepo;
         private readonly IDonorRepository _donorRepository;
-        private readonly ICenterBasedBudgetRepository _centerBasedBudgetRepository;
 
         public DonorCreateCommandHandler(IMapper mapper,
                                         IAsyncRepository<Domain.Entities.Donor> repository,
                                         IAsyncRepository<StakeHolder> stakeHolderRepo,
-                                        IDonorRepository donorRepository,
-                                        ICenterBasedBudgetRepository centerBasedBudgetRepository)
+                                        IDonorRepository donorRepository)
         {
             _mapper = mapper;
             _repository = repository;
             _stakeHolderRepo = stakeHolderRepo;
             _donorRepository = donorRepository;
-            _centerBasedBudgetRepository = centerBasedBudgetRepository;
         }
 
         public async Task<DonorVM> Handle(DonorCreateCommand request, CancellationToken cancellationToken)

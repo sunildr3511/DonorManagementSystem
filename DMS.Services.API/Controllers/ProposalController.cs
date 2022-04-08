@@ -58,5 +58,13 @@ namespace DMS.Services.API.Controllers
 
             return Ok(result);
         }
+
+        [HttpPost("getBudgetInfoByCenterLocationId", Name = "GetBudgetInfoByCenterLocationId")]
+        public async Task<ActionResult<List<BudgetInfoBasedOnCenterVM>>> GetBudgetInfoByCenterLocationId(BudgetInfoBasedOnCenterQuery budgetInfoBasedOnCenterQuery)
+        {
+            var result = await _mediator.Send(budgetInfoBasedOnCenterQuery);
+
+            return Ok(result);
+        }
     }
 }

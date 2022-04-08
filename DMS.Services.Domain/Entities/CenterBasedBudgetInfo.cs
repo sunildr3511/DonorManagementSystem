@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DMS.Services.Domain.Entities
 {
-   public class CenterBasedBudgetInfo
+   public class BudgetInfoBasedOnCenter
     {
         public int Id { get; set; }
         public int LocationId { get; set; }

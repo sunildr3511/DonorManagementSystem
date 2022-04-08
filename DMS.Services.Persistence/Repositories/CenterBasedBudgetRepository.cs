@@ -9,24 +9,24 @@ using System.Threading.Tasks;
 
 namespace DMS.Services.Persistence.Repositories
 {
-    public class CenterBasedBudgetRepository : BaseRepository<CenterBasedBudgetInfo>, ICenterBasedBudgetRepository
+    public class BudgetInfoBasedOnCenterRepository : BaseRepository<BudgetInfoBasedOnCenter>, IBudgetInfoBasedOnCenterRepository
     {
         private readonly DMSAppDbContext _dmsAppDBContext;
-        public CenterBasedBudgetRepository(DMSAppDbContext dmsAppDBContext)
+        public BudgetInfoBasedOnCenterRepository(DMSAppDbContext dmsAppDBContext)
             : base(dmsAppDBContext)
         {
             _dmsAppDBContext = dmsAppDBContext;
         }
-        public async Task<List<CenterBasedBudgetInfo>> FetchCenterBasedBudgetInfo(int locId, int centerId, string purpose)
+        public async Task<List<BudgetInfoBasedOnCenter>> FetchBudgetInfoBasedOnCenter(int locId, int centerId, string purpose)
         {
-            var result = await _dmsAppDBContext.CenterBasedBudgetInfo.Where(
+            var result = await _dmsAppDBContext.BudgetInfoBasedOnCenter.Where(
                                         x=>x.LocationId== locId && 
                                         x.CenterId== centerId && 
-                                        x.PurposeName.ToLower() == purpose.ToLower()).Select(p=> new CenterBasedBudgetInfo { 
+                                        x.PurposeName.ToLower() == purpose.ToLower()).Select(p=> new BudgetInfoBasedOnCenter { 
                                                 BudgetActivityName = p.BudgetActivityName,
                                                 BudgetAmount=p.BudgetAmount
                                         })
-            .ToListAsync<CenterBasedBudgetInfo>();
+            .ToListAsync<BudgetInfoBasedOnCenter>();
 
             return result;
         }

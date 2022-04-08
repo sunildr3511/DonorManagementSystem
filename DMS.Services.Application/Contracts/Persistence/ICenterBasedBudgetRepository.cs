@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DMS.Services.Application.Contracts.Persistence
 {
-   public interface ICenterBasedBudgetRepository
+   public interface IBudgetInfoBasedOnCenterRepository
     {
-        Task<List<CenterBasedBudgetInfo>> FetchCenterBasedBudgetInfo(int locId,int centerId,string purpose);
+        Task<List<BudgetInfoBasedOnCenter>> FetchBudgetInfoBasedOnCenter(int locId,int centerId,string purpose);
     }
 }

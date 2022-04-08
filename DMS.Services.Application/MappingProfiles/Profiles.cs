@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using DMS.Services.Application.Common;
 using DMS.Services.Application.Features;
+
 using DMS.Services.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -155,7 +156,7 @@ namespace DMS.Services.Application.MappingProfiles
             CreateMap<Donor, DonorUpdateCommand>().ReverseMap();
             CreateMap<KindDonor, KindDonorUpdateCommand>().ReverseMap();
             CreateMap<StakeHolder, StakeHolderUpdateCommand>().ReverseMap();
-            CreateMap<CenterBasedBudgetInfo, CenterBasedBudgetVM>().ReverseMap();
+            CreateMap<BudgetInfoBasedOnCenter, BudgetInfoBasedOnCenterVM>().ReverseMap();
             CreateMap<DonorBasedBudgetInfo, BudgetVM>().ReverseMap();
             CreateMap<FamilyUnitSponsorProposal, FUSProposalCreateCommad>().ReverseMap();
             CreateMap<FamilyUnitSponsorProposal, DonorBasedFUSProposalVM>().ReverseMap();

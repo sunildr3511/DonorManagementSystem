@@ -31,7 +31,7 @@ namespace DMS.Services.Persistence
 
             services.AddScoped<IStakeHolderRepository, StakeHolderRepository>();
 
-            services.AddScoped<ICenterBasedBudgetRepository, CenterBasedBudgetRepository>();
+            services.AddScoped<IBudgetInfoBasedOnCenterRepository, BudgetInfoBasedOnCenterRepository>();
 
             services.AddScoped<IDonorBasedBudgetRepository, DonorBasedBudgetRepository>();
 
