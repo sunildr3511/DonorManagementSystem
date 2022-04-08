@@ -6,6 +6,7 @@ namespace DMS.Services.Application.Features
 {
    public class DonorBasedFUSProposalVM
     {
+        public int Id { get; set; }
         public int DonorId { get; set; }
         public string DonorProspectId { get; set; }
         public string DonorName { get; set; }
