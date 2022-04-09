@@ -33,7 +33,9 @@ namespace DMS.Services.Persistence
 
         public DbSet<BudgetInfoBasedOnCenter> BudgetInfoBasedOnCenter { get; set; }
 
-        public DbSet<DonorBasedBudgetInfo> DonorBasedBudgetInfo { get; set; }
+        public DbSet<NonFusProposal> NonFusProposalInfo { get; set; }
+
+        public DbSet<NonFusProposalBudget> NonFusProposalBudgetInfo { get; set; }
 
         public DbSet<FamilyUnitSponsorProposal> DonorFamilyUnitSponsorShipProposal { get; set; }
 

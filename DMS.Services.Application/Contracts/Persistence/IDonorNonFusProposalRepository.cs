@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DMS.Services.Application.Contracts.Persistence
 {
-   public interface IDonorBasedBudgetRepository
+   public interface IDonorNonFusProposalRepository : IAsyncRepository<NonFusProposal>
     {
-        Task<List<DonorBasedBudgetInfo>> FetchDonorBasedProposals(int donorId);
+        
     }
 }

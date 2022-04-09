@@ -33,7 +33,7 @@ namespace DMS.Services.Persistence
 
             services.AddScoped<IBudgetInfoBasedOnCenterRepository, BudgetInfoBasedOnCenterRepository>();
 
-            services.AddScoped<IDonorBasedBudgetRepository, DonorBasedBudgetRepository>();
+            services.AddScoped<IDonorNonFusProposalRepository, DonorNonFusProposalRepository>();
 
             services.AddScoped<IDonorFUSProposalRepository, DonorFUSProposalRepository>();
 
