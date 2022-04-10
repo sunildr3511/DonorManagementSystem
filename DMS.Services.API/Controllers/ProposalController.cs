@@ -90,5 +90,13 @@ namespace DMS.Services.API.Controllers
 
             return Ok(result);
         }
+
+        [HttpPut("updateNonfusById", Name = "UpdateNonfusById")]
+        public async Task<ActionResult> UpdateNonFusById([FromBody] NonFusProposalUpdateCommand nonFusProposalUpdateCommand)
+        {
+            await _mediator.Send(nonFusProposalUpdateCommand);
+
+            return NoContent();
+        }
     }
 }

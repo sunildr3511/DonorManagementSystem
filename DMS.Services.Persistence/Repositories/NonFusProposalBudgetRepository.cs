@@ -1,5 +1,6 @@
 ﻿using DMS.Services.Application.Contracts.Persistence;
 using DMS.Services.Domain.Entities;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -24,5 +25,16 @@ namespace DMS.Services.Persistence.Repositories
 
             return listOfNonFusProposalBudgetForDonor;
         }
+
+        public async Task<Unit> UpdateNonFusBudgetInfo(int proposalId, string activityName, double centerAmount, double budgetAmount)
+        {
+            string query = $"Update NonFusProposalBudgetInfo Set CenterAmount = {centerAmount} Where ProposalId = {proposalId} AND ActivityName= '{activityName}' AND BudgetAmount = {budgetAmount}";
+
+            await _dmsAppDBContext.Database.ExecuteSqlRawAsync(query);
+
+            return Unit.Value;
+        }
+
+       
     }
 }

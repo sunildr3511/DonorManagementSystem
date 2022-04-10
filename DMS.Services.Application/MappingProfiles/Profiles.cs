@@ -251,6 +251,50 @@ namespace DMS.Services.Application.MappingProfiles
                 opt.MapFrom(src => src.UtilizationReportFrequency);
             });
 
+            CreateMap<NonFusProposal, NonFusProposalUpdateCommand>().ReverseMap().ForMember(x => x.DonorId, opt =>
+            {
+                opt.MapFrom(src => src.DonorId);
+            }).ForMember(x => x.DonorProspectId, opt =>
+            {
+                opt.MapFrom(src => src.DonorProspectId);
+            }).ForMember(x => x.DonorName, opt =>
+            {
+                opt.MapFrom(src => src.DonorName);
+            }).ForMember(x => x.Purpose, opt =>
+            {
+                opt.MapFrom(src => src.Purpose);
+            }).ForMember(x => x.ProposalName, opt =>
+            {
+                opt.MapFrom(src => src.ProposalName);
+            }).ForMember(x => x.LocationId, opt =>
+            {
+                opt.MapFrom(src => src.LocationId);
+            }).ForMember(x => x.CenterId, opt =>
+            {
+                opt.MapFrom(src => src.CenterId);
+            }).ForMember(x => x.NumberOfUnit, opt =>
+            {
+                opt.MapFrom(src => src.NumberOfUnit);
+            }).ForMember(x => x.Unit, opt =>
+            {
+                opt.MapFrom(src => src.Unit);
+            }).ForMember(x => x.PeriodOfDonationFrom, opt =>
+            {
+                opt.MapFrom(src => src.PeriodOfDonationFrom);
+            }).ForMember(x => x.PeriodofDonationTo, opt =>
+            {
+                opt.MapFrom(src => src.PeriodofDonationTo);
+            }).ForMember(x => x.Amount, opt =>
+            {
+                opt.MapFrom(src => src.Amount);
+            }).ForMember(x => x.NarrativeReportFrequency, opt =>
+            {
+                opt.MapFrom(src => src.NarrativeReportFrequency);
+            }).ForMember(x => x.UtilizationReportFrequency, opt =>
+            {
+                opt.MapFrom(src => src.UtilizationReportFrequency);
+            });
+
         }
 
 
