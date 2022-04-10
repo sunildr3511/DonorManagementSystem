@@ -24,7 +24,7 @@ namespace DMS.Services.Application.Features
 
             if (fusProposalInfo == null)
             {
-                throw new Exceptions.NotFoundException(nameof(Domain.Entities.FamilyUnitSponsorProposal), Convert.ToString(request.ProposalId));
+                throw new Exceptions.NotFoundException(nameof(Domain.Entities.FusProposal), Convert.ToString(request.ProposalId));
             }
 
            var mappedfusProposalInfo = _mapper.Map<FusProposalDetailVM>(fusProposalInfo);

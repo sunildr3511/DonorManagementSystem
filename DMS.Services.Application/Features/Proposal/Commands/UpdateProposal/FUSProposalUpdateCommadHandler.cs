@@ -26,10 +26,10 @@ namespace DMS.Services.Application.Features
 
                 if (fusProposalToUpdate == null)
                 {
-                    throw new Exceptions.NotFoundException(nameof(Domain.Entities.FamilyUnitSponsorProposal), Convert.ToString(request.Id));
+                    throw new Exceptions.NotFoundException(nameof(Domain.Entities.FusProposal), Convert.ToString(request.Id));
                 }
 
-                _mapper.Map(request, fusProposalToUpdate, typeof(FusProposalUpdateCommad), typeof(Domain.Entities.FamilyUnitSponsorProposal));
+                _mapper.Map(request, fusProposalToUpdate, typeof(FusProposalUpdateCommad), typeof(Domain.Entities.FusProposal));
 
                 await _donorFUSProposalRepository.UpdateAsync(fusProposalToUpdate);
 

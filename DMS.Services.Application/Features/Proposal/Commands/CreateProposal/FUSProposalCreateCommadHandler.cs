@@ -13,9 +13,9 @@ namespace DMS.Services.Application.Features
     public class FusProposalCreateCommadHandler : IRequestHandler<FusProposalCreateCommad>
     {
         private readonly IMapper _mapper;
-        private readonly IAsyncRepository<FamilyUnitSponsorProposal> _repository;
+        private readonly IAsyncRepository<FusProposal> _repository;
 
-        public FusProposalCreateCommadHandler(IMapper mapper, IAsyncRepository<FamilyUnitSponsorProposal> repository)
+        public FusProposalCreateCommadHandler(IMapper mapper, IAsyncRepository<FusProposal> repository)
         {
             _mapper = mapper;
             _repository = repository;
@@ -24,7 +24,7 @@ namespace DMS.Services.Application.Features
         {
             try
             {
-                var mappedRequest = _mapper.Map<FamilyUnitSponsorProposal>(request);
+                var mappedRequest = _mapper.Map<FusProposal>(request);
 
                 await _repository.AddAsync(mappedRequest);
 

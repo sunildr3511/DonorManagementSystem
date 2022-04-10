@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DMS.Services.Application.Contracts.Persistence
 {
-   public interface IDonorFusProposalRepository : IAsyncRepository<FamilyUnitSponsorProposal>
+   public interface IDonorFusProposalRepository : IAsyncRepository<FusProposal>
     {
-        Task<List<FamilyUnitSponsorProposal>> FetchProposalBasedOnDonorId(int donorId);
+        Task<List<FusProposal>> FetchProposalBasedOnDonorId(int donorId);
 
         Task DeleteDonorProposals(int donorId);
     }

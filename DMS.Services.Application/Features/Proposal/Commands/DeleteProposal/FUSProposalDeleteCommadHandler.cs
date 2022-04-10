@@ -26,10 +26,10 @@ namespace DMS.Services.Application.Features
 
                 if (fusProposalToDelete == null)
                 {
-                    throw new Exceptions.NotFoundException(nameof(Domain.Entities.FamilyUnitSponsorProposal), Convert.ToString(request.Id));
+                    throw new Exceptions.NotFoundException(nameof(Domain.Entities.FusProposal), Convert.ToString(request.Id));
                 }
 
-                _mapper.Map(request, fusProposalToDelete, typeof(FusProposalDeleteCommad), typeof(Domain.Entities.FamilyUnitSponsorProposal));
+                _mapper.Map(request, fusProposalToDelete, typeof(FusProposalDeleteCommad), typeof(Domain.Entities.FusProposal));
 
                 await _donorFUSProposalRepository.DeleteAsync(fusProposalToDelete);
 

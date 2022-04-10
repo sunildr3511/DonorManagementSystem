@@ -157,11 +157,11 @@ namespace DMS.Services.Application.MappingProfiles
             CreateMap<KindDonor, KindDonorUpdateCommand>().ReverseMap();
             CreateMap<StakeHolder, StakeHolderUpdateCommand>().ReverseMap();
             CreateMap<BudgetInfoBasedOnCenter, BudgetInfoBasedOnCenterVM>().ReverseMap();
-            CreateMap<FamilyUnitSponsorProposal, FusProposalCreateCommad>().ReverseMap();
-            CreateMap<FamilyUnitSponsorProposal, DonorBasedProposalVM>().ReverseMap();
-            CreateMap<FamilyUnitSponsorProposal, FusProposalUpdateCommad>().ReverseMap();
-            CreateMap<FamilyUnitSponsorProposal, FusProposalDeleteCommad>().ReverseMap();
-            CreateMap<FamilyUnitSponsorProposal, FusProposalDetailVM>().ReverseMap();
+            CreateMap<FusProposal, FusProposalCreateCommad>().ReverseMap();
+            CreateMap<FusProposal, DonorBasedProposalVM>().ReverseMap();
+            CreateMap<FusProposal, FusProposalUpdateCommad>().ReverseMap();
+            CreateMap<FusProposal, FusProposalDeleteCommad>().ReverseMap();
+            CreateMap<FusProposal, FusProposalDetailVM>().ReverseMap();
             CreateMap<NonFusProposal, NonFusProposalCreateCommand>().ReverseMap().ForMember(x => x.DonorId, opt =>
             {
                 opt.MapFrom(src => src.DonorId);
@@ -198,12 +198,12 @@ namespace DMS.Services.Application.MappingProfiles
             }).ForMember(x => x.Amount, opt =>
             {
                 opt.MapFrom(src => src.Amount);
-            }).ForMember(x => x.NarrativeReportFrequency, opt =>
+            }).ForMember(x => x.FrequencyOfNarrativeReport, opt =>
             {
-                opt.MapFrom(src => src.NarrativeReportFrequency);
-            }).ForMember(x => x.UtilizationReportFrequency, opt =>
+                opt.MapFrom(src => src.FrequencyOfNarrativeReport);
+            }).ForMember(x => x.FrequencyOfUtilizationCertificate, opt =>
             {
-                opt.MapFrom(src => src.UtilizationReportFrequency);
+                opt.MapFrom(src => src.FrequencyOfUtilizationCertificate);
             });
             CreateMap<NonFusProposalBudget, NonFusProposalBudgetVM>().ReverseMap();
             CreateMap<NonFusProposal, DonorBasedProposalVM>().ReverseMap();
@@ -243,12 +243,12 @@ namespace DMS.Services.Application.MappingProfiles
             }).ForMember(x => x.Amount, opt =>
             {
                 opt.MapFrom(src => src.Amount);
-            }).ForMember(x => x.NarrativeReportFrequency, opt =>
+            }).ForMember(x => x.FrequencyOfNarrativeReport, opt =>
             {
-                opt.MapFrom(src => src.NarrativeReportFrequency);
-            }).ForMember(x => x.UtilizationReportFrequency, opt =>
+                opt.MapFrom(src => src.FrequencyOfNarrativeReport);
+            }).ForMember(x => x.FrequencyOfUtilizationCertificate, opt =>
             {
-                opt.MapFrom(src => src.UtilizationReportFrequency);
+                opt.MapFrom(src => src.FrequencyOfUtilizationCertificate);
             });
 
             CreateMap<NonFusProposal, NonFusProposalUpdateCommand>().ReverseMap().ForMember(x => x.DonorId, opt =>
@@ -287,12 +287,12 @@ namespace DMS.Services.Application.MappingProfiles
             }).ForMember(x => x.Amount, opt =>
             {
                 opt.MapFrom(src => src.Amount);
-            }).ForMember(x => x.NarrativeReportFrequency, opt =>
+            }).ForMember(x => x.FrequencyOfNarrativeReport, opt =>
             {
-                opt.MapFrom(src => src.NarrativeReportFrequency);
-            }).ForMember(x => x.UtilizationReportFrequency, opt =>
+                opt.MapFrom(src => src.FrequencyOfNarrativeReport);
+            }).ForMember(x => x.FrequencyOfUtilizationCertificate, opt =>
             {
-                opt.MapFrom(src => src.UtilizationReportFrequency);
+                opt.MapFrom(src => src.FrequencyOfUtilizationCertificate);
             });
 
         }

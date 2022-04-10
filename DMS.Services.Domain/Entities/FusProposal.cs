@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DMS.Services.Domain.Entities
 {
-   public class FamilyUnitSponsorProposal
+   public class FusProposal
     {
         public int Id { get; set; }
         public int DonorId { get; set; }

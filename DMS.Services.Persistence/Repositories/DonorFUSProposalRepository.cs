@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DMS.Services.Persistence.Repositories
 {
-   public class DonorFusProposalRepository : BaseRepository<FamilyUnitSponsorProposal>, IDonorFusProposalRepository
+   public class DonorFusProposalRepository : BaseRepository<FusProposal>, IDonorFusProposalRepository
     {
         private readonly DMSAppDbContext _dmsAppDBContext;
         public DonorFusProposalRepository(DMSAppDbContext dmsAppDBContext): base(dmsAppDBContext)
@@ -17,17 +17,17 @@ namespace DMS.Services.Persistence.Repositories
             _dmsAppDBContext = dmsAppDBContext;
         }
 
-        public async Task<List<FamilyUnitSponsorProposal>> FetchProposalBasedOnDonorId(int donorId)
+        public async Task<List<FusProposal>> FetchProposalBasedOnDonorId(int donorId)
         {
            var listOfProposalsForDonor=  await _dmsAppDBContext.DonorFamilyUnitSponsorShipProposal
-                                                .Where(x => x.DonorId == donorId).Select(p => p).ToListAsync<FamilyUnitSponsorProposal>();
+                                                .Where(x => x.DonorId == donorId).Select(p => p).ToListAsync<FusProposal>();
 
             return listOfProposalsForDonor;
         }
 
         public async Task DeleteDonorProposals(int donorId)
         {
-            var donorProposals = await _dmsAppDBContext.DonorFamilyUnitSponsorShipProposal.Where(p => p.DonorId == donorId).Select(p => p).ToListAsync<FamilyUnitSponsorProposal>();
+            var donorProposals = await _dmsAppDBContext.DonorFamilyUnitSponsorShipProposal.Where(p => p.DonorId == donorId).Select(p => p).ToListAsync<FusProposal>();
 
             _dmsAppDBContext.DonorFamilyUnitSponsorShipProposal.RemoveRange(donorProposals);
             _dmsAppDBContext.SaveChanges();
