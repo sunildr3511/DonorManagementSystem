@@ -98,5 +98,13 @@ namespace DMS.Services.API.Controllers
 
             return NoContent();
         }
+
+        [HttpDelete("deleteNonfusById", Name = "DeleteNonfusById")]
+        public async Task<ActionResult> DeleteNonFusById(int id)
+        {
+            await _mediator.Send(new NonFusProposalDeleteCommad { Id = id });
+
+            return NoContent();
+        }
     }
 }

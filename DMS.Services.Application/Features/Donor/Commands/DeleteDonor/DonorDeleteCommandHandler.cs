@@ -14,13 +14,19 @@ namespace DMS.Services.Application.Features
         private readonly IDonorRepository _donorRepository;
         private readonly IStakeHolderRepository _stakeHolderRepository;
         private readonly IDonorFusProposalRepository _donorFUSProposalRepository;
+        private readonly IDonorNonFusProposalRepository _donorNonFUSProposalRepository;
+        private readonly INonFusProposalBudgetRepository _nonFusProposalBudgetRepository;
         private readonly IMapper _mapper;
 
-        public DonorDeleteCommandHandler(IDonorRepository donorRepository,IStakeHolderRepository stakeHolderRepository,IMapper mapper,IDonorFusProposalRepository donorFUSProposalRepository)
+        public DonorDeleteCommandHandler(IDonorRepository donorRepository,IStakeHolderRepository stakeHolderRepository,
+                                         IMapper mapper,IDonorFusProposalRepository donorFUSProposalRepository,
+                                          IDonorNonFusProposalRepository donorNonFUSProposalRepository, INonFusProposalBudgetRepository nonFusProposalBudgetRepository)
         {
             _donorRepository = donorRepository;
             _stakeHolderRepository = stakeHolderRepository;
             _donorFUSProposalRepository = donorFUSProposalRepository;
+            _donorNonFUSProposalRepository = donorNonFUSProposalRepository;
+            _nonFusProposalBudgetRepository = nonFusProposalBudgetRepository;
             _mapper = mapper;
         }
 
@@ -35,7 +41,11 @@ namespace DMS.Services.Application.Features
                     throw new Exceptions.NotFoundException(nameof(Domain.Entities.Donor), Convert.ToString(request.Id));
                 }
 
-               await _donorFUSProposalRepository.DeleteDonorProposals(request.Id);
+                await _nonFusProposalBudgetRepository.DeleteDonorProposals(request.Id);
+
+                await _donorNonFUSProposalRepository.DeleteDonorProposals(request.Id);
+
+                await _donorFUSProposalRepository.DeleteDonorProposals(request.Id);
 
                 await _stakeHolderRepository.DeleteDonorStakeHolders(request.Id);
 

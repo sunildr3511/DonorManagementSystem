@@ -294,7 +294,7 @@ namespace DMS.Services.Application.MappingProfiles
             {
                 opt.MapFrom(src => src.FrequencyOfUtilizationCertificate);
             });
-
+            CreateMap<NonFusProposal, NonFusProposalDeleteCommad>().ReverseMap();
         }
 
 

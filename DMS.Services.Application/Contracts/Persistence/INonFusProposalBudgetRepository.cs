@@ -12,5 +12,9 @@ namespace DMS.Services.Application.Contracts.Persistence
         Task<List<NonFusProposalBudget>> GetListOfBudget(int proposalId);
 
         Task<Unit> UpdateNonFusBudgetInfo(int proposalId, string activityName, double centerAmount, double budgetAmount);
+
+        Task DeleteNonFusProposalBudgets(int proposalId);
+
+        Task DeleteDonorProposals(int donorId);
     }
 }

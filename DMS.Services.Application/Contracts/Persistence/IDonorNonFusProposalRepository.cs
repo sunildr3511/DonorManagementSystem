@@ -9,5 +9,7 @@ namespace DMS.Services.Application.Contracts.Persistence
    public interface IDonorNonFusProposalRepository : IAsyncRepository<NonFusProposal>
     {
         Task<List<NonFusProposal>> FetchNonFusProposalBasedOnDonorId(int donorId);
+
+        Task DeleteDonorProposals(int donorId);
     }
 }
