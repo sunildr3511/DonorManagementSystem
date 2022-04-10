@@ -28,7 +28,7 @@ namespace DMS.Services.API.Controllers
         }
 
         [HttpGet("getfusByDonorId", Name = "GetfusByDonorId")]
-        public async Task<ActionResult<DonorBasedFUSProposalVM>> GetfamilyUnitSponsorByDonorId(int donorId)
+        public async Task<ActionResult<DonorBasedProposalVM>> GetfamilyUnitSponsorByDonorId(int donorId)
         {
             var results = await _mediator.Send(new GetDonorBasedFUSProposalQuery { DonorId = donorId });
 
@@ -73,6 +73,14 @@ namespace DMS.Services.API.Controllers
             await _mediator.Send(nonFusProposalCreateCommand);
 
             return NoContent();
+        }
+
+        [HttpGet("getNonfusByDonorId", Name = "GetNonfusByDonorId")]
+        public async Task<ActionResult<DonorBasedProposalVM>> GetNonFusByDonorId(int donorId)
+        {
+            var results = await _mediator.Send(new GetDonorBasedNonFusProposalQuery { DonorId = donorId });
+
+            return Ok(results);
         }
     }
 }

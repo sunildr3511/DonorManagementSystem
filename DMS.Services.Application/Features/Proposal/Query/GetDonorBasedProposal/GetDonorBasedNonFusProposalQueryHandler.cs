@@ -9,20 +9,20 @@ using System.Threading.Tasks;
 
 namespace DMS.Services.Application.Features
 {
-    public class GetDonorBasedFUSProposalQueryHandler : IRequestHandler<GetDonorBasedFUSProposalQuery, List<DonorBasedProposalVM>>
+    public class GetDonorBasedNonFusProposalQueryHandler : IRequestHandler<GetDonorBasedNonFusProposalQuery, List<DonorBasedProposalVM>>
     {
         private readonly IMapper _mapper;
-        private readonly IDonorFUSProposalRepository _donorFUSProposalRepository;
-        public GetDonorBasedFUSProposalQueryHandler(IMapper mapper, IDonorFUSProposalRepository donorFUSProposalRepository)
+         private readonly IDonorNonFusProposalRepository _donorNonFusProposalRepository;
+        public GetDonorBasedNonFusProposalQueryHandler(IMapper mapper, IDonorNonFusProposalRepository donorNonFusProposalRepository)
         {
             _mapper = mapper;
-            _donorFUSProposalRepository = donorFUSProposalRepository;
+            _donorNonFusProposalRepository = donorNonFusProposalRepository;
         }
-        public async Task<List<DonorBasedProposalVM>> Handle(GetDonorBasedFUSProposalQuery request, CancellationToken cancellationToken)
+        public async Task<List<DonorBasedProposalVM>> Handle(GetDonorBasedNonFusProposalQuery request, CancellationToken cancellationToken)
         {
             try
             {
-                var listOfProposalsForDonor = await _donorFUSProposalRepository.FetchProposalBasedOnDonorId(request.DonorId);
+                var listOfProposalsForDonor = await _donorNonFusProposalRepository.FetchNonFusProposalBasedOnDonorId(request.DonorId);
 
                 return _mapper.Map<List<DonorBasedProposalVM>>(listOfProposalsForDonor);
             }

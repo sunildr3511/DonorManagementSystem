@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DMS.Services.Application.Features
 {
-   public class GetDonorBasedFUSProposalQuery : IRequest<List<DonorBasedProposalVM>>
+   public class GetDonorBasedNonFusProposalQuery : IRequest<List<DonorBasedProposalVM>>
     {
         public int DonorId { get; set; }
     }

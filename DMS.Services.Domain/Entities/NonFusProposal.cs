@@ -10,7 +10,7 @@ namespace DMS.Services.Domain.Entities
         public int DonorId { get; set; }
         public string DonorProspectId { get; set; }
         public string DonorName { get; set; }
-        public string PurposeName { get; set; }
+        public string Purpose { get; set; }
         public string ProposalName { get; set; }
         public int LocationId { get; set; }
         public int CenterId { get; set; }

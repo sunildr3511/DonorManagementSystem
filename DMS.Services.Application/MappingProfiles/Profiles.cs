@@ -158,7 +158,7 @@ namespace DMS.Services.Application.MappingProfiles
             CreateMap<StakeHolder, StakeHolderUpdateCommand>().ReverseMap();
             CreateMap<BudgetInfoBasedOnCenter, BudgetInfoBasedOnCenterVM>().ReverseMap();
             CreateMap<FamilyUnitSponsorProposal, FUSProposalCreateCommad>().ReverseMap();
-            CreateMap<FamilyUnitSponsorProposal, DonorBasedFUSProposalVM>().ReverseMap();
+            CreateMap<FamilyUnitSponsorProposal, DonorBasedProposalVM>().ReverseMap();
             CreateMap<FamilyUnitSponsorProposal, FUSProposalUpdateCommad>().ReverseMap();
             CreateMap<FamilyUnitSponsorProposal, FUSProposalDeleteCommad>().ReverseMap();
             CreateMap<FamilyUnitSponsorProposal, FUSProposalDetailVM>().ReverseMap();
@@ -171,9 +171,9 @@ namespace DMS.Services.Application.MappingProfiles
             }).ForMember(x => x.DonorName, opt =>
             {
                 opt.MapFrom(src => src.DonorName);
-            }).ForMember(x => x.PurposeName, opt =>
+            }).ForMember(x => x.Purpose, opt =>
             {
-                opt.MapFrom(src => src.PurposeName);
+                opt.MapFrom(src => src.Purpose);
             }).ForMember(x => x.ProposalName, opt =>
             {
                 opt.MapFrom(src => src.ProposalName);
@@ -206,6 +206,7 @@ namespace DMS.Services.Application.MappingProfiles
                 opt.MapFrom(src => src.UtilizationReportFrequency);
             });
             CreateMap<NonFusProposalBudget, NonFusProposalBudgetVM>().ReverseMap();
+            CreateMap<NonFusProposal, DonorBasedProposalVM>().ReverseMap();
         }
 
 

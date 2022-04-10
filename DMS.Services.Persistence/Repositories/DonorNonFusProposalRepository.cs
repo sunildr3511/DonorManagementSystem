@@ -16,5 +16,13 @@ namespace DMS.Services.Persistence.Repositories
         {
             _dmsAppDBContext = dmsAppDBContext;
         }
+
+        public async Task<List<NonFusProposal>> FetchNonFusProposalBasedOnDonorId(int donorId)
+        {
+            var listOfProposalsForDonor = await _dmsAppDBContext.NonFusProposalInfo
+                                                .Where(x => x.DonorId == donorId).Select(p => p).ToListAsync<NonFusProposal>();
+
+            return listOfProposalsForDonor;
+        }
     }
 }

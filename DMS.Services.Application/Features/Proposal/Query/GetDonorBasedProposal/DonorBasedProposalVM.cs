@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DMS.Services.Application.Features
 {
-   public class DonorBasedFUSProposalVM
+   public class DonorBasedProposalVM
     {
         public int Id { get; set; }
         public int DonorId { get; set; }
