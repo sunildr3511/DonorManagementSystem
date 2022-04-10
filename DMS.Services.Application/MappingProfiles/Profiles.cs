@@ -159,8 +159,8 @@ namespace DMS.Services.Application.MappingProfiles
             CreateMap<BudgetInfoBasedOnCenter, BudgetInfoBasedOnCenterVM>().ReverseMap();
             CreateMap<FamilyUnitSponsorProposal, FusProposalCreateCommad>().ReverseMap();
             CreateMap<FamilyUnitSponsorProposal, DonorBasedProposalVM>().ReverseMap();
-            CreateMap<FamilyUnitSponsorProposal, FUSProposalUpdateCommad>().ReverseMap();
-            CreateMap<FamilyUnitSponsorProposal, FUSProposalDeleteCommad>().ReverseMap();
+            CreateMap<FamilyUnitSponsorProposal, FusProposalUpdateCommad>().ReverseMap();
+            CreateMap<FamilyUnitSponsorProposal, FusProposalDeleteCommad>().ReverseMap();
             CreateMap<FamilyUnitSponsorProposal, FusProposalDetailVM>().ReverseMap();
             CreateMap<NonFusProposal, NonFusProposalCreateCommand>().ReverseMap().ForMember(x => x.DonorId, opt =>
             {

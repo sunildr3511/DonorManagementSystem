@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace DMS.Services.Application.Features
 {
-    public class FUSProposalDeleteCommadHandler : IRequestHandler<FUSProposalDeleteCommad>
+    public class FusProposalDeleteCommadHandler : IRequestHandler<FusProposalDeleteCommad>
     {
         private readonly IMapper _mapper;
         private readonly IDonorFusProposalRepository _donorFUSProposalRepository;
-        public FUSProposalDeleteCommadHandler(IMapper mapper, IDonorFusProposalRepository donorFUSProposalRepository)
+        public FusProposalDeleteCommadHandler(IMapper mapper, IDonorFusProposalRepository donorFUSProposalRepository)
         {
             _mapper = mapper;
             _donorFUSProposalRepository = donorFUSProposalRepository;
         }
-        public async Task<Unit> Handle(FUSProposalDeleteCommad request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(FusProposalDeleteCommad request, CancellationToken cancellationToken)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace DMS.Services.Application.Features
                     throw new Exceptions.NotFoundException(nameof(Domain.Entities.FamilyUnitSponsorProposal), Convert.ToString(request.Id));
                 }
 
-                _mapper.Map(request, fusProposalToDelete, typeof(FUSProposalDeleteCommad), typeof(Domain.Entities.FamilyUnitSponsorProposal));
+                _mapper.Map(request, fusProposalToDelete, typeof(FusProposalDeleteCommad), typeof(Domain.Entities.FamilyUnitSponsorProposal));
 
                 await _donorFUSProposalRepository.DeleteAsync(fusProposalToDelete);
 

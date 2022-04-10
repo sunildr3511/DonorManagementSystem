@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DMS.Services.Application.Features
 {
-   public class FUSProposalDeleteCommad : IRequest
+   public class FusProposalDeleteCommad : IRequest
     {
         public int Id { get; set; }
     }

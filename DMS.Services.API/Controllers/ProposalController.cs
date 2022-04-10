@@ -36,7 +36,7 @@ namespace DMS.Services.API.Controllers
         }
 
         [HttpPut("updatefusById", Name = "UpdatefusById")]
-        public async Task<ActionResult> UpdateFamilyUnitSponsorById([FromBody] FUSProposalUpdateCommad fUSProposalUpdateCommad)
+        public async Task<ActionResult> UpdateFamilyUnitSponsorById([FromBody] FusProposalUpdateCommad fUSProposalUpdateCommad)
         {
             await _mediator.Send(fUSProposalUpdateCommad);
 
@@ -46,7 +46,7 @@ namespace DMS.Services.API.Controllers
         [HttpDelete("deletefusById", Name = "DeletefusById")]
         public async Task<ActionResult> DeleteFamilyUnitSponsorById(int id)
         {
-            await _mediator.Send(new FUSProposalDeleteCommad { Id = id });
+            await _mediator.Send(new FusProposalDeleteCommad { Id = id });
 
             return NoContent();
         }

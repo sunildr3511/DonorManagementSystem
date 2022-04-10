@@ -9,16 +9,16 @@ using System.Threading.Tasks;
 
 namespace DMS.Services.Application.Features
 {
-    public class FUSProposalUpdateCommadHandler : IRequestHandler<FUSProposalUpdateCommad>
+    public class FusProposalUpdateCommadHandler : IRequestHandler<FusProposalUpdateCommad>
     {
         private readonly IMapper _mapper;
         private readonly IDonorFusProposalRepository _donorFUSProposalRepository;
-        public FUSProposalUpdateCommadHandler(IMapper mapper, IDonorFusProposalRepository donorFUSProposalRepository)
+        public FusProposalUpdateCommadHandler(IMapper mapper, IDonorFusProposalRepository donorFUSProposalRepository)
         {
             _mapper = mapper;
             _donorFUSProposalRepository = donorFUSProposalRepository;
         }
-        public async Task<Unit> Handle(FUSProposalUpdateCommad request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(FusProposalUpdateCommad request, CancellationToken cancellationToken)
         {
             try
             {
@@ -29,7 +29,7 @@ namespace DMS.Services.Application.Features
                     throw new Exceptions.NotFoundException(nameof(Domain.Entities.FamilyUnitSponsorProposal), Convert.ToString(request.Id));
                 }
 
-                _mapper.Map(request, fusProposalToUpdate, typeof(FUSProposalUpdateCommad), typeof(Domain.Entities.FamilyUnitSponsorProposal));
+                _mapper.Map(request, fusProposalToUpdate, typeof(FusProposalUpdateCommad), typeof(Domain.Entities.FamilyUnitSponsorProposal));
 
                 await _donorFUSProposalRepository.UpdateAsync(fusProposalToUpdate);
 
