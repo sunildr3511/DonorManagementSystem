@@ -20,7 +20,7 @@ namespace DMS.Services.API.Controllers
         }
 
         [HttpPost("addfus", Name = "Addfus")]
-        public async Task<ActionResult> Addfus([FromBody] FUSProposalCreateCommad fUSProposalCreateCommad)
+        public async Task<ActionResult> Addfus([FromBody] FusProposalCreateCommad fUSProposalCreateCommad)
         {
             await _mediator.Send(fUSProposalCreateCommad);
 
@@ -52,9 +52,9 @@ namespace DMS.Services.API.Controllers
         }
 
         [HttpGet("getfusById", Name = "GetfusById")]
-        public async Task<ActionResult<FUSProposalDetailVM>> GetFamilyUnitSponsorById(int proposalId)
+        public async Task<ActionResult<FusProposalDetailVM>> GetFamilyUnitSponsorById(int proposalId)
         {
-            var result = await _mediator.Send(new GetFUSProposalDetailQuery { ProposalId = proposalId });
+            var result = await _mediator.Send(new GetFusProposalDetailQuery { ProposalId = proposalId });
 
             return Ok(result);
         }
@@ -81,6 +81,14 @@ namespace DMS.Services.API.Controllers
             var results = await _mediator.Send(new GetDonorBasedNonFusProposalQuery { DonorId = donorId });
 
             return Ok(results);
+        }
+
+        [HttpGet("getNonfusById", Name = "GetNonfusById")]
+        public async Task<ActionResult<NonFusProposalDetailVM>> GetNonFusById(int proposalId)
+        {
+            var result = await _mediator.Send(new GetNonFusProposalDetailQuery { ProposalId = proposalId });
+
+            return Ok(result);
         }
     }
 }

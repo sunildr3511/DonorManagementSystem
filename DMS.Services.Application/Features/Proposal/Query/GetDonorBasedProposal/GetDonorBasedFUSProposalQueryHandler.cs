@@ -12,8 +12,8 @@ namespace DMS.Services.Application.Features
     public class GetDonorBasedFUSProposalQueryHandler : IRequestHandler<GetDonorBasedFUSProposalQuery, List<DonorBasedProposalVM>>
     {
         private readonly IMapper _mapper;
-        private readonly IDonorFUSProposalRepository _donorFUSProposalRepository;
-        public GetDonorBasedFUSProposalQueryHandler(IMapper mapper, IDonorFUSProposalRepository donorFUSProposalRepository)
+        private readonly IDonorFusProposalRepository _donorFUSProposalRepository;
+        public GetDonorBasedFUSProposalQueryHandler(IMapper mapper, IDonorFusProposalRepository donorFUSProposalRepository)
         {
             _mapper = mapper;
             _donorFUSProposalRepository = donorFUSProposalRepository;

@@ -13,10 +13,10 @@ namespace DMS.Services.Application.Features
     {
         private readonly IDonorRepository _donorRepository;
         private readonly IStakeHolderRepository _stakeHolderRepository;
-        private readonly IDonorFUSProposalRepository _donorFUSProposalRepository;
+        private readonly IDonorFusProposalRepository _donorFUSProposalRepository;
         private readonly IMapper _mapper;
 
-        public DonorDeleteCommandHandler(IDonorRepository donorRepository,IStakeHolderRepository stakeHolderRepository,IMapper mapper,IDonorFUSProposalRepository donorFUSProposalRepository)
+        public DonorDeleteCommandHandler(IDonorRepository donorRepository,IStakeHolderRepository stakeHolderRepository,IMapper mapper,IDonorFusProposalRepository donorFUSProposalRepository)
         {
             _donorRepository = donorRepository;
             _stakeHolderRepository = stakeHolderRepository;

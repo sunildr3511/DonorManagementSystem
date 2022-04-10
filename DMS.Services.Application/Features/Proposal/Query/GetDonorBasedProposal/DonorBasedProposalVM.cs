@@ -11,6 +11,7 @@ namespace DMS.Services.Application.Features
         public string DonorProspectId { get; set; }
         public string DonorName { get; set; }
         public string Purpose { get; set; }
+        public string ProposalName { get; set; }
         public int LocationId { get; set; }
         public int CenterId { get; set; }
         public int NumberOfUnit { get; set; }

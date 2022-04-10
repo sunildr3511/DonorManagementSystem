@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace DMS.Services.Persistence.Repositories
 {
-   public class DonorFUSProposalRepository : BaseRepository<FamilyUnitSponsorProposal>, IDonorFUSProposalRepository
+   public class DonorFusProposalRepository : BaseRepository<FamilyUnitSponsorProposal>, IDonorFusProposalRepository
     {
         private readonly DMSAppDbContext _dmsAppDBContext;
-        public DonorFUSProposalRepository(DMSAppDbContext dmsAppDBContext): base(dmsAppDBContext)
+        public DonorFusProposalRepository(DMSAppDbContext dmsAppDBContext): base(dmsAppDBContext)
         {
             _dmsAppDBContext = dmsAppDBContext;
         }

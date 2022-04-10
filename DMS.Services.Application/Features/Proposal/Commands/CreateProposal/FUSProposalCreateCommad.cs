@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DMS.Services.Application.Features
 {
-   public class FUSProposalCreateCommad:IRequest
+   public class FusProposalCreateCommad:IRequest
     {
         public int DonorId { get; set; }
         public string DonorProspectId { get; set; }

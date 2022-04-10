@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using DMS.Services.Application.Contracts.Persistence;
-
 using DMS.Services.Domain.Entities;
 using MediatR;
 using System;
@@ -11,17 +10,17 @@ using System.Threading.Tasks;
 
 namespace DMS.Services.Application.Features
 {
-    public class FUSProposalCreateCommadHandler : IRequestHandler<FUSProposalCreateCommad>
+    public class FusProposalCreateCommadHandler : IRequestHandler<FusProposalCreateCommad>
     {
         private readonly IMapper _mapper;
         private readonly IAsyncRepository<FamilyUnitSponsorProposal> _repository;
 
-        public FUSProposalCreateCommadHandler(IMapper mapper, IAsyncRepository<FamilyUnitSponsorProposal> repository)
+        public FusProposalCreateCommadHandler(IMapper mapper, IAsyncRepository<FamilyUnitSponsorProposal> repository)
         {
             _mapper = mapper;
             _repository = repository;
         }
-        public async Task<Unit> Handle(FUSProposalCreateCommad request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(FusProposalCreateCommad request, CancellationToken cancellationToken)
         {
             try
             {

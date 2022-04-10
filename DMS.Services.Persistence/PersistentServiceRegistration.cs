@@ -35,7 +35,9 @@ namespace DMS.Services.Persistence
 
             services.AddScoped<IDonorNonFusProposalRepository, DonorNonFusProposalRepository>();
 
-            services.AddScoped<IDonorFUSProposalRepository, DonorFUSProposalRepository>();
+            services.AddScoped<IDonorFusProposalRepository, DonorFusProposalRepository>();
+
+            services.AddScoped<INonFusProposalBudgetRepository, NonFusProposalBudgetRepository>();
 
             return services;
         }

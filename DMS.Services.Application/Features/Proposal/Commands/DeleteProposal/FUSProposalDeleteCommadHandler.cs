@@ -12,8 +12,8 @@ namespace DMS.Services.Application.Features
     public class FUSProposalDeleteCommadHandler : IRequestHandler<FUSProposalDeleteCommad>
     {
         private readonly IMapper _mapper;
-        private readonly IDonorFUSProposalRepository _donorFUSProposalRepository;
-        public FUSProposalDeleteCommadHandler(IMapper mapper, IDonorFUSProposalRepository donorFUSProposalRepository)
+        private readonly IDonorFusProposalRepository _donorFUSProposalRepository;
+        public FUSProposalDeleteCommadHandler(IMapper mapper, IDonorFusProposalRepository donorFUSProposalRepository)
         {
             _mapper = mapper;
             _donorFUSProposalRepository = donorFUSProposalRepository;

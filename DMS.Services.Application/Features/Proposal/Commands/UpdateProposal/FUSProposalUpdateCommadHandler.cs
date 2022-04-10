@@ -12,8 +12,8 @@ namespace DMS.Services.Application.Features
     public class FUSProposalUpdateCommadHandler : IRequestHandler<FUSProposalUpdateCommad>
     {
         private readonly IMapper _mapper;
-        private readonly IDonorFUSProposalRepository _donorFUSProposalRepository;
-        public FUSProposalUpdateCommadHandler(IMapper mapper, IDonorFUSProposalRepository donorFUSProposalRepository)
+        private readonly IDonorFusProposalRepository _donorFUSProposalRepository;
+        public FUSProposalUpdateCommadHandler(IMapper mapper, IDonorFusProposalRepository donorFUSProposalRepository)
         {
             _mapper = mapper;
             _donorFUSProposalRepository = donorFUSProposalRepository;
