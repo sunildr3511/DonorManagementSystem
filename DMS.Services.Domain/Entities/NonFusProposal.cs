@@ -19,7 +19,7 @@ namespace DMS.Services.Domain.Entities
         public DateTime PeriodOfDonationFrom { get; set; }
         public DateTime PeriodofDonationTo { get; set; }
         public double Amount { get; set; }
-        public string NarrativeReportFrequency { get; set; }
-        public string UtilizationReportFrequency { get; set; }
+        public string FrequencyOfNarrativeReport { get; set; }
+        public string FrequencyOfUtilizationCertificate { get; set; }
     }
 }
