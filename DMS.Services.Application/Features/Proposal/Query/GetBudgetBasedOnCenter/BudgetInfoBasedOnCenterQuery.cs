@@ -9,6 +9,6 @@ namespace DMS.Services.Application.Features
     {
         public int LocationId { get; set; }
         public int CenterId { get; set; }
-        public string ProposalName { get; set; }
+        public int PurposeId { get; set; }
     }
 }

@@ -60,9 +60,9 @@ namespace DMS.Services.API.Controllers
         }
 
         [HttpGet("getBudgetInfoByCenterLocationId", Name = "GetBudgetInfoByCenterLocationId")]
-        public async Task<ActionResult<List<BudgetInfoBasedOnCenterVM>>> GetBudgetInfoByCenterLocationId(int locationId, int centerId, string proposalName)
+        public async Task<ActionResult<List<BudgetInfoBasedOnCenterVM>>> GetBudgetInfoByCenterLocationId(int locationId, int centerId, int purposeId)
         {
-            var result = await _mediator.Send(new BudgetInfoBasedOnCenterQuery { LocationId = locationId, CenterId = centerId, ProposalName = proposalName });
+            var result = await _mediator.Send(new BudgetInfoBasedOnCenterQuery { LocationId = locationId, CenterId = centerId, PurposeId = purposeId });
 
             return Ok(result);
         }

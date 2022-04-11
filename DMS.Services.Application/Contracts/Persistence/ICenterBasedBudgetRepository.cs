@@ -8,6 +8,6 @@ namespace DMS.Services.Application.Contracts.Persistence
 {
    public interface IBudgetInfoBasedOnCenterRepository
     {
-        Task<List<BudgetInfoBasedOnCenter>> FetchBudgetInfoBasedOnCenter(int locId,int centerId,string purpose);
+        Task<List<BudgetInfoBasedOnCenter>> FetchBudgetInfoBasedOnCenter(int locId,int centerId,int purposeId);
     }
 }

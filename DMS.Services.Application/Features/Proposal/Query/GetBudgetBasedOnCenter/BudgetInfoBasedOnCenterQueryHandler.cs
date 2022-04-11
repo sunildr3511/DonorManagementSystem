@@ -23,7 +23,7 @@ namespace DMS.Services.Application.Features
         {
             try
             {
-                var result = await _budgetInfoBasedOnCenterRepository.FetchBudgetInfoBasedOnCenter(request.LocationId, request.CenterId, request.ProposalName);
+                var result = await _budgetInfoBasedOnCenterRepository.FetchBudgetInfoBasedOnCenter(request.LocationId, request.CenterId, request.PurposeId);
 
                 var mappedResult = _mapper.Map<List<BudgetInfoBasedOnCenterVM>>(result);
 
