@@ -22,5 +22,22 @@ namespace DMS.Services.API.Controllers
 
             return Ok(result);
         }
+
+        [HttpPost("add", Name = "AddMasterData")]
+        public async Task<ActionResult> AddMasterData([FromBody] MasterDataCreateCommand masterDataCreateCommand)
+        {
+            await _mediator.Send(masterDataCreateCommand);
+
+            return NoContent();
+        }
+
+        [HttpPut("update", Name = "UpdateMasterData")]
+        public async Task<ActionResult> UpdateMasterData([FromBody] MasterDataUpdateCommand masterDataUpdateCommand)
+        {
+            await _mediator.Send(masterDataUpdateCommand);
+
+            return NoContent();
+        }
+
     }
 }

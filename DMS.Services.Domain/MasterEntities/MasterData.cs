@@ -9,28 +9,27 @@ namespace DMS.Services.Domain.MasterEntities
     {
         public int Id { get; set; }
 
-        public string Name { get; set; }
+        public string Value { get; set; }
     }
 
 
     public class SysConfigMasterData
     {
-        public IEnumerable<string> DonorType { get; set; }
-        public IEnumerable<string> DonorCategory { get; set; }
+        public IEnumerable<MasterData> Locations { get; set; }
+        public IEnumerable<MasterData> DonorType { get; set; }
+        public IEnumerable<MasterData> DonorCategory { get; set; }
 
-        public IEnumerable<string> Salutation { get; set; }
+        public IEnumerable<MasterData> Salutation { get; set; }
 
-        public IEnumerable<string> SourceOfPayment { get; set; }
+        public IEnumerable<MasterData> SourceOfPayment { get; set; }
 
-        public IEnumerable<string> Purpose { get; set; }
+        public IEnumerable<MasterData> Purpose { get; set; }
 
-        public IEnumerable<string> Documents { get; set; }
+        public IEnumerable<MasterData> Documents { get; set; }
 
-        public IEnumerable<string> Roles { get; set; }
+        public IEnumerable<MasterData> Roles { get; set; }
 
-        public List<Location> Locations { get; set; }
-
-        public IEnumerable<string> DonationReceived { get; set; }
+        public IEnumerable<MasterData> DonationReceived { get; set; }
 
     }
 }

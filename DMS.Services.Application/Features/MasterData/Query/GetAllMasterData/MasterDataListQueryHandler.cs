@@ -32,7 +32,7 @@ namespace DMS.Services.Application.Features
                     SystemConfiguration = await _systemConfigurationRepository.GetSystemConfiguration(),
                    
                 };
-               masterDataListVM.SystemConfiguration.Locations= await _locationRepository.GetLocations();
+              // masterDataListVM.SystemConfiguration.Locations= await _locationRepository.GetLocations();
             }
             catch (Exception ex)
             {
