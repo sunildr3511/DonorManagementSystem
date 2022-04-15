@@ -39,5 +39,13 @@ namespace DMS.Services.API.Controllers
             return NoContent();
         }
 
+        //[HttpDelete("delete", Name = "DeleteMasterData")]
+        //public async Task<ActionResult> DeleteMasterData(int id)
+        //{
+        //    await _mediator.Send(new MasterDataDeleteCommand { Id = id });
+
+        //    return NoContent();
+        //}
+
     }
 }

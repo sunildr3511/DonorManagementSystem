@@ -297,6 +297,7 @@ namespace DMS.Services.Application.MappingProfiles
             CreateMap<NonFusProposal, NonFusProposalDeleteCommad>().ReverseMap();
             CreateMap<SystemConfiguration, MasterDataCreateCommand>().ReverseMap();
             CreateMap<SystemConfiguration, MasterDataUpdateCommand>().ReverseMap();
+            CreateMap<SystemConfiguration, MasterDataDeleteCommand>().ReverseMap();
         }
 
 
