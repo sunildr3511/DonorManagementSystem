@@ -298,6 +298,7 @@ namespace DMS.Services.Application.MappingProfiles
             CreateMap<SystemConfiguration, MasterDataCreateCommand>().ReverseMap();
             CreateMap<SystemConfiguration, MasterDataUpdateCommand>().ReverseMap();
             CreateMap<SystemConfiguration, MasterDataDeleteCommand>().ReverseMap();
+            CreateMap<StakeHolder, StakeHolderCreateCommand>().ReverseMap();
         }
 
 

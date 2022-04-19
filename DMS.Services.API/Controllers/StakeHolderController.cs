@@ -18,6 +18,14 @@ namespace DMS.Services.API.Controllers
             _mediator = mediator;
         }
 
+        [HttpPost("add", Name = "AddStakeHolder")]
+        public async Task<ActionResult> AddStakeHolder([FromBody] StakeHolderCreateCommand stakeHolderCreateCommand)
+        {
+            await _mediator.Send(stakeHolderCreateCommand);
+
+            return NoContent();
+        }
+
         [HttpDelete("delete", Name = "DeleteStakeHolder")]
         public async Task<ActionResult> DeleteStakeHolder(int id)
         {
