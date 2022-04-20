@@ -6,6 +6,9 @@ namespace DMS.Services.Application.Features
 {
    public class StakeHolderVM
     {
+        public int Id { get; set; }
+
+        public int DonorId { get; set; }
         public string DecisionMakingRole { get; set; }
         public string DonorRelationShip { get; set; }
         public string Salutation { get; set; }
