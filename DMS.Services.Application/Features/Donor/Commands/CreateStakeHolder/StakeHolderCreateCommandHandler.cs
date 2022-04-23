@@ -23,6 +23,15 @@ namespace DMS.Services.Application.Features
         {
             try
             {
+                var validator = new StakeHolderCreateCommandValidator();
+
+                var validationResult = await validator.ValidateAsync(request);
+
+                if (validationResult.Errors.Count > 0)
+                {
+                    throw new Exceptions.ValidationException(validationResult);
+                }
+
                 var mappedData = _mapper.Map<DMS.Services.Domain.Entities.StakeHolder>(request);
 
                 await _stakeHolderRepo.AddAsync(mappedData);
