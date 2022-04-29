@@ -106,5 +106,13 @@ namespace DMS.Services.API.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("getPurposeByDonorId", Name = "getPurposeByDonorId")]
+        public async Task<ActionResult<DonorBasedProposalVM>> GetPurposeByDonorId(int donorId)
+        {
+            var results = await _mediator.Send(new GetDonorBasedProposalQuery { DonorId = donorId });
+
+            return Ok(results);
+        }
     }
 }
