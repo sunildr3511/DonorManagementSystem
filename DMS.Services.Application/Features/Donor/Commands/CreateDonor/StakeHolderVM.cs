@@ -21,5 +21,10 @@ namespace DMS.Services.Application.Features
         public DateTime DOB { get; set; }
         public bool DecisionMaker { get; set; }
 
+        public string EmailId2 { get; set; }
+        public string EmailId3 { get; set; }
+        public string EmailId4 { get; set; }
+        public string EmailId5 { get; set; }
+
     }
 }
