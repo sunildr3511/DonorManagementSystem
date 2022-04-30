@@ -23,8 +23,8 @@ namespace DMS.Services.Persistence.Repositories
             string purposeName = FetchPurposeNameBasedOnId(purposeId);
 
             var result = await _dmsAppDBContext.BudgetInfoBasedOnCenter.Where(
-                                        x=>x.LocationId== locId && 
-                                        x.CenterId== centerId && 
+                                        x=>x.LocationId== locId || 
+                                        x.CenterId== centerId || 
                                         x.PurposeName.ToLower() == purposeName.ToLower()).Select(p=> new BudgetInfoBasedOnCenter { 
                                                 BudgetActivityName = p.BudgetActivityName,
                                                 BudgetAmount=p.BudgetAmount

@@ -107,8 +107,8 @@ namespace DMS.Services.API.Controllers
             return NoContent();
         }
 
-        [HttpGet("getPurposeByDonorId", Name = "getPurposeByDonorId")]
-        public async Task<ActionResult<DonorBasedProposalVM>> GetPurposeByDonorId(int donorId)
+        [HttpGet("getAllPurposesByDonorId", Name = "GetAllPurposesByDonorId")]
+        public async Task<ActionResult<DonorBasedProposalVM>> GetAllPurposesByDonorId(int donorId)
         {
             var results = await _mediator.Send(new GetDonorBasedProposalQuery { DonorId = donorId });
 
