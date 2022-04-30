@@ -19,7 +19,7 @@ namespace DMS.Services.Persistence.Repositories
 
         public async Task<List<FusProposal>> FetchProposalBasedOnDonorId(int donorId)
         {
-           var listOfProposalsForDonor=  await _dmsAppDBContext.DonorFamilyUnitSponsorShipProposal
+           var listOfProposalsForDonor=  await _dmsAppDBContext.FusProposalInfo
                                                 .Where(x => x.DonorId == donorId).Select(p => p).ToListAsync<FusProposal>();
 
             return listOfProposalsForDonor;
@@ -27,9 +27,9 @@ namespace DMS.Services.Persistence.Repositories
 
         public async Task DeleteDonorProposals(int donorId)
         {
-            var donorProposals = await _dmsAppDBContext.DonorFamilyUnitSponsorShipProposal.Where(p => p.DonorId == donorId).Select(p => p).ToListAsync<FusProposal>();
+            var donorProposals = await _dmsAppDBContext.FusProposalInfo.Where(p => p.DonorId == donorId).Select(p => p).ToListAsync<FusProposal>();
 
-            _dmsAppDBContext.DonorFamilyUnitSponsorShipProposal.RemoveRange(donorProposals);
+            _dmsAppDBContext.FusProposalInfo.RemoveRange(donorProposals);
             _dmsAppDBContext.SaveChanges();
 
 

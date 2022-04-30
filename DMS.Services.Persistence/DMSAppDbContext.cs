@@ -37,7 +37,7 @@ namespace DMS.Services.Persistence
 
         public DbSet<NonFusProposalBudget> NonFusProposalBudgetInfo { get; set; }
 
-        public DbSet<FusProposal> DonorFamilyUnitSponsorShipProposal { get; set; }
+        public DbSet<FusProposal> FusProposalInfo { get; set; }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
