@@ -114,5 +114,21 @@ namespace DMS.Services.API.Controllers
 
             return Ok(results);
         }
+
+        [HttpPut("updateProposlaByIdAndType", Name = "UpdateProposalByIdAndType")]
+        public async Task<ActionResult> UpdateProposalByIdAndType([FromBody] ProposalUpdateCommand proposalUpdateCommad)
+        {
+            await _mediator.Send(proposalUpdateCommad);
+
+            return NoContent();
+        }
+
+        [HttpDelete("deleteProposalByIdAndType", Name = "DeleteProposalByIdAndType")]
+        public async Task<ActionResult> DeleteProposalByIdAndType(int id, int typeId)
+        {
+            await _mediator.Send(new ProposalDeleteCommad { Id = id, ProposalTypeId=typeId});
+
+            return NoContent();
+        }
     }
 }

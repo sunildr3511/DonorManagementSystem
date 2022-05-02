@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DMS.Services.Application.Features.Proposal.Commands.UpdateProposal
+namespace DMS.Services.Application.Features
 {
     public class NonFusProposalUpdateCommandHandler : IRequestHandler<NonFusProposalUpdateCommand>
     {
