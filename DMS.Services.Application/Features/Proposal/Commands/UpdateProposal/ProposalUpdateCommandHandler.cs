@@ -37,13 +37,13 @@ namespace DMS.Services.Application.Features
         {
             try
             {
-                if (request.NonFusProposalUpdateCommand.Id != 0)
+                if (request.NonFusProposalUpdateCommand != null && request.NonFusProposalUpdateCommand.Id != 0)
                 {
                     _nonFusProposalUpdateCommandHandler = new NonFusProposalUpdateCommandHandler(_mapper, _nonFusProposalBudgetRepository, _nonFusProposalRepository);
                     await _nonFusProposalUpdateCommandHandler.Handle(request.NonFusProposalUpdateCommand, cancellationToken);
                 }
 
-                if (request.FusProposalUpdateCommad.Id!=0)
+                if (request.FusProposalUpdateCommad != null && request.FusProposalUpdateCommad.Id!=0)
                 {
                     _fusProposalUpdateCommandHandler = new FusProposalUpdateCommadHandler(_mapper, _donorFUSProposalRepository);
                     await _fusProposalUpdateCommandHandler.Handle(request.FusProposalUpdateCommad, cancellationToken);
