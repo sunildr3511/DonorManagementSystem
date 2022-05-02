@@ -115,7 +115,7 @@ namespace DMS.Services.API.Controllers
             return Ok(results);
         }
 
-        [HttpPut("updateProposlaByIdAndType", Name = "UpdateProposalByIdAndType")]
+        [HttpPut("updateProposalByIdAndType", Name = "UpdateProposalByIdAndType")]
         public async Task<ActionResult> UpdateProposalByIdAndType([FromBody] ProposalUpdateCommand proposalUpdateCommad)
         {
             await _mediator.Send(proposalUpdateCommad);
