@@ -24,20 +24,22 @@ namespace DMS.Services.Persistence.Repositories
             {
                 Name = p.Name,
                 Value = p.Value,
-                Id=p.Id
+                Id=p.Id,
+                IsActive= p.IsActive
+
             }).ToListAsync();
 
             SysConfigMasterData sysConfigMasterData = new SysConfigMasterData
             {
-                Locations = results.Where(x => x.Name == "Location").Select(p => new MasterData { Id = p.Id, Value = p.Value }),
-                DonorType = results.Where(x => x.Name == "DonorType").Select(p => new MasterData { Id=p.Id,Value=p.Value}),
-                DonorCategory = results.Where(x => x.Name == "DonorCategory").Select(p => new MasterData { Id = p.Id, Value = p.Value }),
-                Salutation = results.Where(x => x.Name == "Salutation").Select(p => new MasterData { Id = p.Id, Value = p.Value }),
-                SourceOfPayment = results.Where(x => x.Name == "SourceOfPayment").Select(p => new MasterData { Id = p.Id, Value = p.Value }),
-                Purpose = results.Where(x => x.Name == "Purpose").Select(p => new MasterData { Id = p.Id, Value = p.Value }),
-                Documents = results.Where(x => x.Name == "Documents").Select(p => new MasterData { Id = p.Id, Value = p.Value }),
-                Roles = results.Where(x => x.Name == "Role").Select(p => new MasterData { Id = p.Id, Value = p.Value }),
-                DonationReceived = results.Where(x=>x.Name == "DonationReceived").Select(p=> new MasterData { Id = p.Id, Value = p.Value })
+                Locations = results.Where(x => x.Name == "Location" && x.IsActive==true ).Select(p => new MasterData { Id = p.Id, Value = p.Value }),
+                DonorType = results.Where(x => x.Name == "DonorType" && x.IsActive == true).Select(p => new MasterData { Id=p.Id,Value=p.Value }),
+                DonorCategory = results.Where(x => x.Name == "DonorCategory" && x.IsActive == true).Select(p => new MasterData { Id = p.Id, Value = p.Value }),
+                Salutation = results.Where(x => x.Name == "Salutation" && x.IsActive == true).Select(p => new MasterData { Id = p.Id, Value = p.Value}),
+                SourceOfPayment = results.Where(x => x.Name == "SourceOfPayment" && x.IsActive == true).Select(p => new MasterData { Id = p.Id, Value = p.Value }),
+                Purpose = results.Where(x => x.Name == "Purpose" && x.IsActive == true).Select(p => new MasterData { Id = p.Id, Value = p.Value}),
+                Documents = results.Where(x => x.Name == "Documents" && x.IsActive == true).Select(p => new MasterData { Id = p.Id, Value = p.Value }),
+                Roles = results.Where(x => x.Name == "Role" && x.IsActive == true).Select(p => new MasterData { Id = p.Id, Value = p.Value }),
+                DonationReceived = results.Where(x=>x.Name == "DonationReceived" && x.IsActive == true).Select(p=> new MasterData { Id = p.Id, Value = p.Value })
 
             };
 
