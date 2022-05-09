@@ -14,10 +14,7 @@ namespace DMS.Services.Domain.Common
 
         public DateTime? UpdatedDateTime { get; set; }
 
-        public string Status { get; set; }
-
-        public string Comment { get; set; }
-
-        public string AssignedTo { get; set; }
+        public bool IsActive { get; set; }
+      
     }
 }

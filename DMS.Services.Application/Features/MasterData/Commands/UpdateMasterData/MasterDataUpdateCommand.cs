@@ -14,5 +14,8 @@ namespace DMS.Services.Application.Features
         public string Value { get; set; }
 
         public bool IsActive { get; set; }
+
+        public string UpdatedBy { get; set; }
+
     }
 }
