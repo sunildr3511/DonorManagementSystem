@@ -39,6 +39,10 @@ namespace DMS.Services.Persistence
 
             services.AddScoped<INonFusProposalBudgetRepository, NonFusProposalBudgetRepository>();
 
+            services.AddScoped<IRoleInfoRepository, RoleInfoRepository>();
+
+            services.AddScoped<IUserInfoRepository, UserInfoRepository>();
+
             return services;
         }
     }
