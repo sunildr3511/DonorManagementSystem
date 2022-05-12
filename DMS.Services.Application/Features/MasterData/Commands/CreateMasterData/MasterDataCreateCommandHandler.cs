@@ -25,7 +25,6 @@ namespace DMS.Services.Application.Features.MasterData.Commands.CreateMasterData
         {
             try
             {
-                request.IsActive = true;
 
                 var mappedRequest = _mapper.Map<SystemConfiguration>(request);
 

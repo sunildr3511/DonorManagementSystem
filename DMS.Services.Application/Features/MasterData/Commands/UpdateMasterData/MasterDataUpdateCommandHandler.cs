@@ -31,8 +31,6 @@ namespace DMS.Services.Application.Features
                     throw new Exceptions.NotFoundException(nameof(Domain.Entities.SystemConfiguration), Convert.ToString(request.Id));
                 }
 
-                request.IsActive = true;
-
                 _mapper.Map(request, masterDataToUpdate, typeof(MasterDataUpdateCommand), typeof(Domain.Entities.SystemConfiguration));
 
                 await _repository.UpdateAsync(masterDataToUpdate);

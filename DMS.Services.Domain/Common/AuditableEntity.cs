@@ -6,11 +6,11 @@ namespace DMS.Services.Domain.Common
 {
     public class AuditableEntity
     {
-        public string CreatedBy { get; set; }
+        public int CreatedBy { get; set; }
 
         public DateTime? CreatedDateTime { get; set; }
 
-        public string UpdatedBy { get; set; }
+        public int UpdatedBy { get; set; }
 
         public DateTime? UpdatedDateTime { get; set; }
 
