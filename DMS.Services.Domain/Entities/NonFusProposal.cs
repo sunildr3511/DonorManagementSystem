@@ -21,5 +21,7 @@ namespace DMS.Services.Domain.Entities
         public double Amount { get; set; }
         public string FrequencyOfNarrativeReport { get; set; }
         public string FrequencyOfUtilizationCertificate { get; set; }
+
+        public int PurposeId { get; set; }
     }
 }

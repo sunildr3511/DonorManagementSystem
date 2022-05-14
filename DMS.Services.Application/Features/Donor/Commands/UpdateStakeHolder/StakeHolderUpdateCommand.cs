@@ -27,6 +27,10 @@ namespace DMS.Services.Application.Features
         public string EmailId4 { get; set; }
         public string EmailId5 { get; set; }
 
+        public int SalutationId { get; set; }
+
+        public int DecisionMakingRoleId { get; set; }
+
 
     }
 }

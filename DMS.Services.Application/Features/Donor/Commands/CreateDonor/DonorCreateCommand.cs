@@ -21,5 +21,13 @@ namespace DMS.Services.Application.Features
         public DateTime FollowUpDate { get; set; }
         public List<StakeHolderVM> StakeHolders { get; set; }
 
+        public int TypeId { get; set; }
+
+        public int CategoryId { get; set; }
+
+        public int SourceOfPaymentId { get; set; }
+
+        public int PurposeId { get; set; }
+
     }
 }

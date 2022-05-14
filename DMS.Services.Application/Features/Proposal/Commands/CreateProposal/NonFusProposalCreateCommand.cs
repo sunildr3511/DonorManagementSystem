@@ -23,5 +23,7 @@ namespace DMS.Services.Application.Features
         public string FrequencyOfNarrativeReport { get; set; }
         public string FrequencyOfUtilizationCertificate { get; set; }
         public List<NonFusProposalBudgetVM> ListOfBudget { get; set; }
+
+        public int PurposeId { get; set; }
     }
 }

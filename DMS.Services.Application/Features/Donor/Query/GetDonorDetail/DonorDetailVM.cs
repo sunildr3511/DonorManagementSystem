@@ -31,5 +31,13 @@ namespace DMS.Services.Application.Features
         public string DonationReceived { get; set; }
         public string Quantity { get; set; }
         public string Description { get; set; }
+
+        public int TypeId { get; set; }
+
+        public int CategoryId { get; set; }
+
+        public int SourceOfPaymentId { get; set; }
+
+        public int PurposeId { get; set; }
     }
 }

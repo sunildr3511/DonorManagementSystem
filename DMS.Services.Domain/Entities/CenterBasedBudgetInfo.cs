@@ -16,5 +16,7 @@ namespace DMS.Services.Domain.Entities
         public string BudgetActivityName { get; set; }
 
         public double BudgetAmount { get; set; }
+
+        public int PurposeId { get; set; }
     }
 }

@@ -22,5 +22,12 @@ namespace DMS.Services.Domain.Entities
         public string Comment { get; set; }
         public DateTime FollowUpDate { get; set; }
         public int DonorType { get; set; }
+        public int TypeId { get; set; }
+
+        public int CategoryId { get; set; }
+
+        public int SourceOfPaymentId { get; set; }
+
+        public int PurposeId { get; set; }
     }
 }
