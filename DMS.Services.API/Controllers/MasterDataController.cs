@@ -47,5 +47,29 @@ namespace DMS.Services.API.Controllers
             return NoContent();
         }
 
+        [HttpPost("addCenter", Name = "AddCenterMasterData")]
+        public async Task<ActionResult> AddCenterMasterData([FromBody] CenterMasterDataCreateCommand centerMasterDataCreateCommand)
+        {
+            await _mediator.Send(centerMasterDataCreateCommand);
+
+            return NoContent();
+        }
+
+        [HttpPut("updateCenter", Name = "UpdateCenterMasterData")]
+        public async Task<ActionResult> UpdateCenterMasterData([FromBody] CenterMasterDataUpdateCommand centerMasterDataUpdateCommand)
+        {
+            await _mediator.Send(centerMasterDataUpdateCommand);
+
+            return NoContent();
+        }
+
+        [HttpDelete("deleteCenter", Name = "DeleteCenterMasterData")]
+        public async Task<ActionResult> DeleteCenterMasterData(int id)
+        {
+            await _mediator.Send(new CenterMasterDataDeleteCommand { Id = id });
+
+            return NoContent();
+        }
+
     }
 }

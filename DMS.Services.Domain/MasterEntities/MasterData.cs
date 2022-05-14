@@ -14,6 +14,17 @@ namespace DMS.Services.Domain.MasterEntities
         public bool IsActive { get; set; }
     }
 
+    public class CenterMasterData
+    {
+        public int Id { get; set; }
+
+        public string Value { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public int LocationId { get; set; }
+    }
+
 
     public class SysConfigMasterData
     {
@@ -32,6 +43,8 @@ namespace DMS.Services.Domain.MasterEntities
         public IEnumerable<MasterData> Roles { get; set; }
 
         public IEnumerable<MasterData> DonationReceived { get; set; }
+
+        public IEnumerable<CenterMasterData> Centers { get; set; }
 
     }
 }

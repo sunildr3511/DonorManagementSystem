@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 
 namespace DMS.Services.Application.Features
 {
-    public class CenterMasterDataUpdateCommandHandler : IRequestHandler<CenterMasterDataUpdateCommand>
+    public class MasterDataUpdateCommandHandler : IRequestHandler<MasterDataUpdateCommand>
     {
         private readonly IMapper _mapper;
-        private readonly IAsyncRepository<Centre> _repository;
+        private readonly IAsyncRepository<SystemConfiguration> _repository;
 
-        public CenterMasterDataUpdateCommandHandler(IMapper mapper, IAsyncRepository<Centre> repository)
+        public MasterDataUpdateCommandHandler(IMapper mapper, IAsyncRepository<SystemConfiguration> repository)
         {
             _mapper = mapper;
             _repository = repository;
         }
-        public async Task<Unit> Handle(CenterMasterDataUpdateCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(MasterDataUpdateCommand request, CancellationToken cancellationToken)
         {
             try
             {
@@ -28,10 +28,10 @@ namespace DMS.Services.Application.Features
 
                 if (masterDataToUpdate == null)
                 {
-                    throw new Exceptions.NotFoundException(nameof(Domain.Entities.Centre), Convert.ToString(request.Id));
+                    throw new Exceptions.NotFoundException(nameof(Domain.Entities.SystemConfiguration), Convert.ToString(request.Id));
                 }
 
-                _mapper.Map(request, masterDataToUpdate, typeof(CenterMasterDataUpdateCommand), typeof(Domain.Entities.Centre));
+                _mapper.Map(request, masterDataToUpdate, typeof(MasterDataUpdateCommand), typeof(Domain.Entities.SystemConfiguration));
 
                 await _repository.UpdateAsync(masterDataToUpdate);
 

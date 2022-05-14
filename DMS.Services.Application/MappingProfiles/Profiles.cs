@@ -3,6 +3,7 @@ using DMS.Services.Application.Common;
 using DMS.Services.Application.Features;
 
 using DMS.Services.Domain.Entities;
+using DMS.Services.Domain.MasterEntities;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.IO;
@@ -301,6 +302,24 @@ namespace DMS.Services.Application.MappingProfiles
             CreateMap<StakeHolder, StakeHolderCreateCommand>().ReverseMap();
 
             CreateMap<UserInfoVM, UserInfo>().ReverseMap();
+
+            CreateMap<CenterMasterData, Centre>().ReverseMap().ForMember(x => x.Id, opt =>
+            {
+                opt.MapFrom(src => src.Id);
+            }).ForMember(x => x.Value, opt =>
+            {
+                opt.MapFrom(src => src.Name);
+            }).ForMember(x => x.IsActive, opt =>
+            {
+                opt.MapFrom(src => src.IsActive);
+            }).ForMember(x => x.LocationId, opt =>
+            {
+                opt.MapFrom(src => src.LocationId);
+            });
+
+            CreateMap<Centre, CenterMasterDataCreateCommand>().ReverseMap();
+            CreateMap<Centre, CenterMasterDataUpdateCommand>().ReverseMap();
+            CreateMap<Centre, CenterMasterDataDeleteCommand>().ReverseMap();
         }
 
 

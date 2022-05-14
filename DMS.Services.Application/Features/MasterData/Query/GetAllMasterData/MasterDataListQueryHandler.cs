@@ -1,7 +1,9 @@
-﻿using DMS.Services.Application.Contracts.Persistence;
+﻿using AutoMapper;
+using DMS.Services.Application.Contracts.Persistence;
 using MediatR;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -11,16 +13,19 @@ namespace DMS.Services.Application.Features
     {
         private readonly ISystemConfigurationRepository _systemConfigurationRepository;
         private readonly ILogger<MasterDataListQueryHandler> _logger;
-        private readonly ILocationRepository _locationRepository;
+        private readonly ICentreRepository _centerRepository;
+        private readonly IMapper _mapper;
 
         public MasterDataListQueryHandler(ISystemConfigurationRepository systemConfigurationRepository,
                                           ILogger<MasterDataListQueryHandler> logger,
-                                          ILocationRepository locationRepository)
+                                          ICentreRepository centreRepository,
+                                          IMapper mapper)
         {
 
             _systemConfigurationRepository = systemConfigurationRepository;
             _logger = logger;
-            _locationRepository = locationRepository;
+            _centerRepository = centreRepository;
+            _mapper = mapper;
         }
         public async Task<MasterDataListVM> Handle(MasterDataListQuery request, CancellationToken cancellationToken)
         {
@@ -32,7 +37,10 @@ namespace DMS.Services.Application.Features
                     SystemConfiguration = await _systemConfigurationRepository.GetSystemConfiguration(),
                    
                 };
-              // masterDataListVM.SystemConfiguration.Locations= await _locationRepository.GetLocations();
+
+                var allCenters = await _centerRepository.FetchAllCenters();
+
+                masterDataListVM.SystemConfiguration.Centers = _mapper.Map<List<DMS.Services.Domain.MasterEntities.CenterMasterData>>(allCenters);
             }
             catch (Exception ex)
             {
