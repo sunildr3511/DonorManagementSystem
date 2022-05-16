@@ -30,7 +30,8 @@ namespace DMS.Services.Persistence.Repositories
                 Location = p.Location,
                 Centre = p.Centre,
                 FollowUpDate = p.FollowUpDate,
-                DonorType = p.DonorType
+                DonorType = p.DonorType,
+                TypeId =p.TypeId
 
             }).ToListAsync<Donor>();
 

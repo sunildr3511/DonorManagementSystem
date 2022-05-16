@@ -33,6 +33,7 @@ namespace DMS.Services.Persistence.Repositories
                 Quantity = p.Quantity,
                 Description = p.Description,
                 Address = p.Address,
+                DonationReceivedId=p.DonationReceivedId
             }).ToListAsync<KindDonor>();
 
             return kindDonorsInfo;
