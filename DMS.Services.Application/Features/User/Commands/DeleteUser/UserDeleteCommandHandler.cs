@@ -30,9 +30,11 @@ namespace DMS.Services.Application.Features
                     throw new Exceptions.NotFoundException(nameof(Domain.Entities.UserInfo), Convert.ToString(request.Id));
                 }
 
+                userToDelete.IsActive = false;
+
                 _mapper.Map(request, userToDelete, typeof(UserDeleteCommand), typeof(Domain.Entities.UserInfo));
 
-                await _repository.DeleteAsync(userToDelete);
+                await _repository.UpdateAsync(userToDelete);
 
                 return Unit.Value;
             }

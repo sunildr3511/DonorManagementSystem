@@ -33,5 +33,7 @@ namespace DMS.Services.Application.Features
         public int CenterId { get; set; }
 
         public string Zone { get; set; }
+
+        public bool IsActive { get; set; }
     }
 }
