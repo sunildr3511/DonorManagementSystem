@@ -1,14 +1,12 @@
-﻿using DMS.Services.Domain.Common;
+﻿using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DMS.Services.Domain.Entities
+namespace DMS.Services.Application.Features
 {
-   public class UserInfo : AuditableEntity
+   public class UserCreateCommand : IRequest<int>
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public string Gender { get; set; }
@@ -27,8 +25,6 @@ namespace DMS.Services.Domain.Entities
 
         public string ReportingManagerMobile { get; set; }
 
-        public string Password { get; set; }
-
         public int RoleId { get; set; }
 
         public int LocationId { get; set; }
@@ -36,5 +32,9 @@ namespace DMS.Services.Domain.Entities
         public int CenterId { get; set; }
 
         public string Zone { get; set; }
+
+        public bool IsActive { get; set; }
+
+        public int CreatedBy { get; set; }
     }
 }

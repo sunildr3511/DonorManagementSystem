@@ -40,7 +40,7 @@ namespace DMS.Services.Persistence.Repositories
                 Documents = results.Where(x => x.Name == "Documents").Select(p => new MasterData { Id = p.Id, Value = p.Value, IsActive = p.IsActive }),
                 Roles = results.Where(x => x.Name == "Role").Select(p => new MasterData { Id = p.Id, Value = p.Value, IsActive = p.IsActive }),
                 DonationReceived = results.Where(x=>x.Name == "DonationReceived").Select(p=> new MasterData { Id = p.Id, Value = p.Value, IsActive = p.IsActive }),
-                UserRoles = results.Where(x => x.Name == "UserRole").Select(p => new MasterData { Id = p.Id, Value = p.Value, IsActive = p.IsActive })
+                UserRoles = results.Where(x => x.Name == "UserRole" && x.Value !="admin").Select(p => new MasterData { Id = p.Id, Value = p.Value, IsActive = p.IsActive })
 
             };
 

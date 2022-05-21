@@ -1,11 +1,10 @@
-﻿using DMS.Services.Domain.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DMS.Services.Domain.Entities
+namespace DMS.Services.Application.Features
 {
-   public class UserInfo : AuditableEntity
+   public class UserListVM
     {
         public int Id { get; set; }
 
@@ -26,8 +25,6 @@ namespace DMS.Services.Domain.Entities
         public string ReportingManagerEmail { get; set; }
 
         public string ReportingManagerMobile { get; set; }
-
-        public string Password { get; set; }
 
         public int RoleId { get; set; }
 

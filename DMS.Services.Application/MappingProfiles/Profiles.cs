@@ -320,6 +320,11 @@ namespace DMS.Services.Application.MappingProfiles
             CreateMap<Centre, CenterMasterDataCreateCommand>().ReverseMap();
             CreateMap<Centre, CenterMasterDataUpdateCommand>().ReverseMap();
             CreateMap<Centre, CenterMasterDataDeleteCommand>().ReverseMap();
+
+            CreateMap<UserInfo, UserCreateCommand>().ReverseMap();
+            CreateMap<UserInfo, UserUpdateCommand>().ReverseMap();
+            CreateMap<UserInfo, UserDeleteCommand>().ReverseMap();
+            CreateMap<UserInfo, UserListVM>().ReverseMap();
         }
 
 
