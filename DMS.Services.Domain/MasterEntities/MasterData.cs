@@ -46,5 +46,7 @@ namespace DMS.Services.Domain.MasterEntities
 
         public IEnumerable<CenterMasterData> Centers { get; set; }
 
+        public IEnumerable<MasterData> UserRoles { get; set; }
+
     }
 }
