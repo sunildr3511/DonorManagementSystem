@@ -33,6 +33,14 @@ namespace DMS.Services.Persistence.Repositories
             return allCenters;
 
         }
+
+        public async Task<string> FetchCenterNameBasedOnId(int id)
+        {
+            var result = await _dmsAppDBContext.CentreInfo.SingleOrDefaultAsync(x => x.Id == id);
+
+            return result.Name;
+        }
+
         public async Task<IEnumerable<Centre>> GetCentresBasedOnLocation(int locationId)
         {
 

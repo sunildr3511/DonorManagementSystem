@@ -12,5 +12,7 @@ namespace DMS.Services.Application.Contracts.Persistence
         Task<IEnumerable<Centre>> GetCentresBasedOnLocation(int locationId);
 
         Task<IEnumerable<Centre>> FetchAllCenters();
+
+        Task<string> FetchCenterNameBasedOnId(int id);
     }
 }

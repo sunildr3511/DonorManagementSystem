@@ -18,6 +18,13 @@ namespace DMS.Services.Persistence.Repositories
             _dmsAppDBContext = dmsAppDBContext;
         }
 
+        public async Task<string> FetchNameBasedOnId(int id)
+        {
+            var result = await _dmsAppDBContext.SystemConfiguration.SingleOrDefaultAsync(x => x.Id == id);
+
+            return result.Value;
+        }
+
         public async Task<SysConfigMasterData> GetSystemConfiguration()
         {
             var results = await _dmsAppDBContext.SystemConfiguration.Select(p => new

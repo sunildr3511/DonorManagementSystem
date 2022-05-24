@@ -35,5 +35,11 @@ namespace DMS.Services.Application.Features
         public string Zone { get; set; }
 
         public bool IsActive { get; set; }
+
+        public string RoleName { get; set; }
+
+        public string LocationName { get; set; }
+
+        public string CenterName { get; set; }
     }
 }
