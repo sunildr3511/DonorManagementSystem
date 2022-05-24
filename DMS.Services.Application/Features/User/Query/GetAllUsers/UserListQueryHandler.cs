@@ -61,8 +61,6 @@ namespace DMS.Services.Application.Features
                 }
 
                 return allUsersVM;
-
-               
             }
             catch (Exception ex )
             {
