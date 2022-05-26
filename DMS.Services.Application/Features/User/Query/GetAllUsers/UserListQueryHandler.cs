@@ -41,7 +41,7 @@ namespace DMS.Services.Application.Features
                     Id = 0
                 }); 
 
-                foreach(var user in allUsers.Where(x => x.Name.ToLower() != "admin"))
+                foreach(var user in allUsers)
                 {
                     UserListVM userListVM = new UserListVM();
                     userListVM.Id = user.Id;
