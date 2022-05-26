@@ -36,6 +36,11 @@ namespace DMS.Services.Application.Features
 
                 List<UserListVM> allUsersVM = new List<UserListVM>();
 
+                allUsersVM.Add(new UserListVM
+                {
+                    Id = 0
+                }); 
+
                 foreach(var user in allUsers.Where(x => x.Name.ToLower() != "admin"))
                 {
                     UserListVM userListVM = new UserListVM();
