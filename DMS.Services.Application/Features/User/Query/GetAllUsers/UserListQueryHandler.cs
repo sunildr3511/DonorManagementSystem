@@ -38,7 +38,8 @@ namespace DMS.Services.Application.Features
 
                 allUsersVM.Add(new UserListVM
                 {
-                    Id = 0
+                    Id = 0,
+                    Name=string.Empty
                 }); 
 
                 foreach(var user in allUsers)
