@@ -30,6 +30,8 @@ namespace DMS.Services.Application.Features
                     throw new Exceptions.NotFoundException(nameof(Domain.Entities.UserInfo), Convert.ToString(request.Id));
                 }
 
+                userToUpdate.IsDelete = false;
+
                 _mapper.Map(request, userToUpdate, typeof(UserUpdateCommand), typeof(Domain.Entities.UserInfo));
 
                 await _repository.UpdateAsync(userToUpdate);

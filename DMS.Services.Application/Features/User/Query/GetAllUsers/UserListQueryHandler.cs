@@ -42,7 +42,7 @@ namespace DMS.Services.Application.Features
                     Name=string.Empty
                 }); 
 
-                foreach(var user in allUsers)
+                foreach(var user in allUsers.Where(x=>x.IsDelete==false))
                 {
                     UserListVM userListVM = new UserListVM();
                     userListVM.Id = user.Id;

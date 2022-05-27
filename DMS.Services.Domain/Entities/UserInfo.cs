@@ -36,5 +36,7 @@ namespace DMS.Services.Domain.Entities
         public int CenterId { get; set; }
 
         public string Zone { get; set; }
+
+        public bool IsDelete { get; set; }
     }
 }

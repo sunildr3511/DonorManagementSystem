@@ -36,5 +36,7 @@ namespace DMS.Services.Application.Features
         public bool IsActive { get; set; }
 
         public int CreatedBy { get; set; }
+
+        public bool IsDelete { get; set; }
     }
 }

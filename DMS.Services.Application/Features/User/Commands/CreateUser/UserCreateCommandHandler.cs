@@ -26,6 +26,8 @@ namespace DMS.Services.Application.Features
             {
                 var mappedUser = _mapper.Map<UserInfo>(request);
 
+                mappedUser.IsDelete = false;
+
                var userInfo= await _repository.AddAsync(mappedUser);
 
                 return userInfo.Id;

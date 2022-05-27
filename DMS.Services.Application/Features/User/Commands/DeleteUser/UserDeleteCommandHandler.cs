@@ -30,7 +30,7 @@ namespace DMS.Services.Application.Features
                     throw new Exceptions.NotFoundException(nameof(Domain.Entities.UserInfo), Convert.ToString(request.Id));
                 }
 
-                userToDelete.IsActive = false;
+                userToDelete.IsDelete = true;
 
                 _mapper.Map(request, userToDelete, typeof(UserDeleteCommand), typeof(Domain.Entities.UserInfo));
 

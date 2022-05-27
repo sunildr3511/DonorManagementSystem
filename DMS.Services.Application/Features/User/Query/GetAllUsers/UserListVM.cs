@@ -41,5 +41,7 @@ namespace DMS.Services.Application.Features
         public string LocationName { get; set; }
 
         public string CenterName { get; set; }
+
+        public bool IsDelete { get; set; }
     }
 }
