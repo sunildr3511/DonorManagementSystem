@@ -1,4 +1,5 @@
 ﻿using DMS.Services.Application.Features;
+using DMS.Services.Application.Features.Donor;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -32,10 +33,10 @@ namespace DMS.Services.API.Controllers
             return Ok(id);
         }
 
-        [HttpGet("allDonors", Name = "GetAllDonors")]
-        public async Task<ActionResult<List<DonorListVM>>> GetAllDonors()
+        [HttpGet("managerBasedAllDonors", Name = "GetManagerBasedAllDonors")]
+        public async Task<ActionResult<List<DonorListVM>>> GetManagerBasedAllDonors(int loggedInUserId)
         {
-            var result = await _mediator.Send(new DonorListQuery());
+            var result = await _mediator.Send(new DonorListQuery { LoggedInUserId = loggedInUserId });
 
             return Ok(result);
 
@@ -63,6 +64,16 @@ namespace DMS.Services.API.Controllers
             await _mediator.Send(donorUpdateCommand);
 
             return NoContent();
+        }
+
+
+        [HttpGet("areaManagerBasedAllDonors", Name = "GetAreaManagerBasedAllDonors")]
+        public async Task<ActionResult<List<AreaManagerDonorListVM>>> GetAreaManagerBasedAllDonors(int loggedInUserId)
+        {
+            var result = await _mediator.Send(new AreaManagerDonorListQuery { LoggedInUserId = loggedInUserId });
+
+            return Ok(result);
+
         }
 
     }

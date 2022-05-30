@@ -27,11 +27,11 @@ namespace DMS.Services.Application.Features
         {
             try
             {
-                var allDonors = await _repository.GetAllDonors();
+                var allDonors = await _repository.GetAllDonors(request.LoggedInUserId);
 
                 List<DonorListVM> donorListVMs=  _mapper.Map<List<DonorListVM>>(allDonors);
 
-                var allKindDonors = await _kindDonorRepository.GetAllKindDonors();
+                var allKindDonors = await _kindDonorRepository.GetAllKindDonors(request.LoggedInUserId);
 
                 donorListVMs.AddRange(_mapper.Map<List<DonorListVM>>(allKindDonors));
 
@@ -39,7 +39,7 @@ namespace DMS.Services.Application.Features
             }
             catch (Exception ex)
             {
-                _logger.LogError($"Failed to fetch all donors because of {ex.Message}");
+                _logger.LogError($"Failed to fetch all donors for Manager because of {ex.Message}");
 
                 throw new Exception(ex.Message);
             }

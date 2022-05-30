@@ -1,9 +1,10 @@
 ﻿using AutoMapper;
 using DMS.Services.Application.Common;
 using DMS.Services.Application.Features;
-
+using DMS.Services.Application.Features.Donor;
 using DMS.Services.Domain.Entities;
 using DMS.Services.Domain.MasterEntities;
+using DMS.Services.Domain.RoleBasedDonors;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.IO;
@@ -324,6 +325,7 @@ namespace DMS.Services.Application.MappingProfiles
             CreateMap<UserInfo, UserCreateCommand>().ReverseMap();
             CreateMap<UserInfo, UserUpdateCommand>().ReverseMap();
             CreateMap<UserInfo, UserDeleteCommand>().ReverseMap();
+            CreateMap<AreaManagerDonorList, AreaManagerDonorListVM>().ReverseMap();
             //CreateMap<UserInfo, UserListVM>().ReverseMap();
         }
 

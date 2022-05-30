@@ -1,6 +1,7 @@
 ﻿using DMS.Services.Application.Contracts.Persistence;
 using DMS.Services.Application.Features;
 using DMS.Services.Domain.Entities;
+using DMS.Services.Domain.RoleBasedDonors;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -19,9 +20,48 @@ namespace DMS.Services.Persistence.Repositories
             _dmsAppDBContext = dmsAppDBContext;
         }
 
-        public async Task<List<Donor>> GetAllDonors()
+        public async Task<List<AreaManagerDonorList>> FetchAreadManagerDonors(int loggedinUserId)
         {
-            var donorsInfo = await _dmsAppDBContext.DonorInfo.Select(p => new Donor {
+            var donorresult = await (from t1 in _dmsAppDBContext.DonorInfo
+                                     join t2 in _dmsAppDBContext.UserInfo
+                                     on t1.CreatedBy equals t2.Id
+                                     where t2.ReportingManagerCode == loggedinUserId
+                                                            group t2 by new { t2.Id, t2.Name, t2.ReportingManagerCode } into grouping
+                                     select new AreaManagerDonorList { UserId = grouping.Key.Id, 
+                                                                        UserName = grouping.Key.Name, 
+                                                                        ReportingManagerCode = grouping.Key.ReportingManagerCode, 
+                                                                        DonorProfileCount = grouping.Count() }).ToListAsync<AreaManagerDonorList>();
+
+            var Kinddonorresult = await (from t1 in _dmsAppDBContext.KindDonorInfo
+                                         join t2 in _dmsAppDBContext.UserInfo
+                                         on t1.CreatedBy equals t2.Id
+                                         where t2.ReportingManagerCode == loggedinUserId
+                                         group t2 by new { t2.Id, t2.Name, t2.ReportingManagerCode } into grouping
+                                         select new AreaManagerDonorList { UserId = grouping.Key.Id, 
+                                                                           UserName = grouping.Key.Name, 
+                                                                        ReportingManagerCode = grouping.Key.ReportingManagerCode, 
+                                                                        DonorProfileCount = grouping.Count() }).ToListAsync<AreaManagerDonorList>();
+
+            var final=  donorresult.Concat(Kinddonorresult)
+            .GroupBy(x => new
+            {
+                x.UserId,
+                x.UserName,
+                x.ReportingManagerCode
+            }).Select(grp => new AreaManagerDonorList
+            {
+                UserId = grp.Key.UserId,
+                UserName = grp.Key.UserName,
+                ReportingManagerCode = grp.Key.ReportingManagerCode,
+                DonorProfileCount = grp.Sum(ta => ta.DonorProfileCount)
+            }).ToList();
+
+            return final;
+        }
+
+        public async Task<List<Donor>> GetAllDonors(int loggedinUserId)
+        {
+            var donorsInfo = await _dmsAppDBContext.DonorInfo.Where(x=>x.CreatedBy== loggedinUserId).Select(p => new Donor {
 
                 Id = p.Id,
                 DonorId = p.DonorId,
@@ -46,7 +86,5 @@ namespace DMS.Services.Persistence.Repositories
 
             return maxDonorId;
         }
-
-        
     }
 }

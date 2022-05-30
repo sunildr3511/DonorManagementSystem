@@ -1,5 +1,6 @@
 ﻿using DMS.Services.Application.Features;
 using DMS.Services.Domain.Entities;
+using DMS.Services.Domain.RoleBasedDonors;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,8 +12,8 @@ namespace DMS.Services.Application.Contracts.Persistence
     {
         Task<int> GetMaxId();
 
-        Task<List<Donor>> GetAllDonors();
+        Task<List<Donor>> GetAllDonors(int loggedinUserId);
 
-      
+        Task<List<AreaManagerDonorList>> FetchAreadManagerDonors(int loggedinUserId);
     }
 }

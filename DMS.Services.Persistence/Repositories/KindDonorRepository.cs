@@ -18,9 +18,9 @@ namespace DMS.Services.Persistence.Repositories
             _dmsAppDBContext = dmsAppDBContext;
         }
 
-        public async Task<List<KindDonor>> GetAllKindDonors()
+        public async Task<List<KindDonor>> GetAllKindDonors(int loggedinUserId)
         {
-            var kindDonorsInfo = await _dmsAppDBContext.KindDonorInfo.Select(p => new KindDonor
+            var kindDonorsInfo = await _dmsAppDBContext.KindDonorInfo.Where(x=>x.CreatedBy== loggedinUserId).Select(p => new KindDonor
             {
 
                 Id = p.Id,
