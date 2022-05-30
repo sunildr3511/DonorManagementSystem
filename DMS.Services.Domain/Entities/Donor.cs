@@ -29,5 +29,9 @@ namespace DMS.Services.Domain.Entities
         public int SourceOfPaymentId { get; set; }
 
         public int PurposeId { get; set; }
+
+        public int CreatedBy { get; set; }
+
+        public int UpdatedBy { get; set; }
     }
 }

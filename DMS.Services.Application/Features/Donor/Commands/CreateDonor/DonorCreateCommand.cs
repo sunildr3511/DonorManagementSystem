@@ -29,5 +29,7 @@ namespace DMS.Services.Application.Features
 
         public int PurposeId { get; set; }
 
+        public int CreatedBy { get; set; }
+
     }
 }

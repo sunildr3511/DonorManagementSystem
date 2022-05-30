@@ -19,5 +19,7 @@ namespace DMS.Services.Application.Features
         public string Description { get; set; }
 
         public int DonationReceivedId { get; set; }
+
+        public int UpdatedBy { get; set; }
     }
 }

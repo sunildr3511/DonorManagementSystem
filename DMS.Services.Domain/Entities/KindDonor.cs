@@ -18,5 +18,9 @@ namespace DMS.Services.Domain.Entities
         public string Description { get; set; }
 
         public int DonationReceivedId { get; set; }
+
+        public int CreatedBy { get; set; }
+
+        public int UpdatedBy { get; set; }
     }
 }

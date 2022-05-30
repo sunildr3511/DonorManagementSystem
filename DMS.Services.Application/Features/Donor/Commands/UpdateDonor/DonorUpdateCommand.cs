@@ -30,5 +30,7 @@ namespace DMS.Services.Application.Features
         public int SourceOfPaymentId { get; set; }
 
         public int PurposeId { get; set; }
+
+        public int UpdatedBy { get; set; }
     }
 }
