@@ -17,10 +17,10 @@ namespace DMS.Services.Persistence.Repositories
             _dmsAppDBContext = dmsAppDBContext;
         }
 
-        public async Task<List<UserInfo>> FetchLoggedInUserInfo(string userName, string password)
+        public async Task<List<UserInfo>> FetchLoggedInUserInfo(string userName, string email)
         {
             var result = await _dmsAppDBContext.UserInfo.Where(x => x.Name.ToLower() == userName.ToLower() &&
-                                                                    x.Password.ToLower() == password.ToLower()).Select(p => new UserInfo 
+                                                                    x.Email.ToLower() == email.ToLower()).Select(p => new UserInfo 
                                                                                 { Id =p.Id,Name =p.Name,RoleId=p.RoleId,LocationId =p.LocationId,CenterId =p.CenterId}).ToListAsync<UserInfo>();
 
             return result ;

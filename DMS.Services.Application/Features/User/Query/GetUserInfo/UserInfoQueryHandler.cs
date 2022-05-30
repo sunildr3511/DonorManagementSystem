@@ -23,7 +23,7 @@ namespace DMS.Services.Application.Features
         {
             try
             {
-                var loggedInUser = await _userInfoRepository.FetchLoggedInUserInfo(request.UserName,request.Password);
+                var loggedInUser = await _userInfoRepository.FetchLoggedInUserInfo(request.UserName,request.Email);
 
                 return _mapper.Map<List<UserInfoVM>>(loggedInUser);
             }
