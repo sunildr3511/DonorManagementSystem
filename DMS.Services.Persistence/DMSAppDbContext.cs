@@ -41,6 +41,10 @@ namespace DMS.Services.Persistence
 
         public DbSet<UserInfo> UserInfo { get; set; }
 
+        public DbSet<DonorCommentInfo> DonorCommentInfo { get; set; }
+
+        public DbSet<KindDonorCommentInfo> KindDonorCommentInfo { get; set; }
+
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
             foreach (var entry in ChangeTracker.Entries<AuditableEntity>())

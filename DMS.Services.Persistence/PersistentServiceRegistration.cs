@@ -43,6 +43,10 @@ namespace DMS.Services.Persistence
 
             services.AddScoped<IUserInfoRepository, UserInfoRepository>();
 
+            services.AddScoped<IDonorCommentRepository, DonorCommentRepository>();
+
+            services.AddScoped<IKindDonorCommentRepository, KindDonorCommentRepository>();
+
             return services;
         }
     }

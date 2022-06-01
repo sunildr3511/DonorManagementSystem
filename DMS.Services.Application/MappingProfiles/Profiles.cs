@@ -326,7 +326,8 @@ namespace DMS.Services.Application.MappingProfiles
             CreateMap<UserInfo, UserUpdateCommand>().ReverseMap();
             CreateMap<UserInfo, UserDeleteCommand>().ReverseMap();
             CreateMap<AreaManagerDonorList, AreaManagerDonorListVM>().ReverseMap();
-            //CreateMap<UserInfo, UserListVM>().ReverseMap();
+            CreateMap<DonorCommentInfo, DonorCommentVM>().ReverseMap();
+            CreateMap<KindDonorCommentInfo, DonorCommentVM>().ReverseMap();
         }
 
 

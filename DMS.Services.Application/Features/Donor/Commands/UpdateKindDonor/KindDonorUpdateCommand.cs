@@ -21,5 +21,7 @@ namespace DMS.Services.Application.Features
         public int DonationReceivedId { get; set; }
 
         public int UpdatedBy { get; set; }
+
+        public DonorCommentVM KindDonorComment { get; set; }
     }
 }

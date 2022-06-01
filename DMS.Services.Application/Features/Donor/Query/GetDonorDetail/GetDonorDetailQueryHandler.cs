@@ -16,13 +16,20 @@ namespace DMS.Services.Application.Features
         private readonly IAsyncRepository<Domain.Entities.Donor> _donorRepository;
         private readonly IKindDonorRepository _kindDonorRepository;
         private readonly IStakeHolderRepository _stakeHolderRepo;
+        private readonly IDonorCommentRepository _donorCommentRepository;
+        private readonly IKindDonorCommentRepository _kindDonorCommentRepository;
 
-        public GetDonorDetailQueryHandler(IMapper mapper, IAsyncRepository<Domain.Entities.Donor> donorRepository, IStakeHolderRepository stakeHolderRepo,IKindDonorRepository kindDonorRepository)
+        public GetDonorDetailQueryHandler(IMapper mapper, IAsyncRepository<Domain.Entities.Donor> donorRepository, 
+                                    IStakeHolderRepository stakeHolderRepo,IKindDonorRepository kindDonorRepository,
+                                    IDonorCommentRepository donorCommentRepository,
+                                    IKindDonorCommentRepository kindDonorCommentRepository)
         {
             _mapper = mapper;
             _donorRepository = donorRepository;
             _stakeHolderRepo = stakeHolderRepo;
             _kindDonorRepository = kindDonorRepository;
+            _donorCommentRepository = donorCommentRepository;
+            _kindDonorCommentRepository = kindDonorCommentRepository;
         }
         public async Task<DonorDetailVM> Handle(GetDonorDetailQuery request, CancellationToken cancellationToken)
         {
@@ -58,9 +65,13 @@ namespace DMS.Services.Application.Features
 
             var stakeHolders = await _stakeHolderRepo.GetStakeHoldersForDonor(donorInfo.Id);
 
+            var donorComments = await _donorCommentRepository.GetCommentsForDonor(donorInfo.Id);
+
             mappedDonorInfo = _mapper.Map<DonorDetailVM>(donorInfo);
 
             mappedDonorInfo.StakeHolders = _mapper.Map<List<StakeHolderVM>>(stakeHolders);
+
+            mappedDonorInfo.DonorComments = _mapper.Map<List<DonorCommentVM>>(donorComments);
 
             return mappedDonorInfo;
         }
@@ -73,8 +84,11 @@ namespace DMS.Services.Application.Features
             {
                 throw new Exceptions.NotFoundException(nameof(Domain.Entities.KindDonor), Convert.ToString(request.Id));
             }
+            var kindDonorComments = await _kindDonorCommentRepository.GetCommentsForDonor(kindDonorInfo.Id);
 
             mappedDonorInfo = _mapper.Map<DonorDetailVM>(kindDonorInfo);
+
+            mappedDonorInfo.DonorComments = _mapper.Map<List<DonorCommentVM>>(kindDonorComments);
 
             return mappedDonorInfo;
         }

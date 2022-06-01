@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DMS.Services.Application.Contracts.Persistence;
+using DMS.Services.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,12 @@ namespace DMS.Services.Application.Features
     {
         private readonly IMapper _mapper;
         private readonly IKindDonorRepository _donorRepository;
-        public KindDonorUpdateCommandHandler(IMapper mapper, IKindDonorRepository donorRepository)
+        private readonly IKindDonorCommentRepository _kindDonorCommentRepository;
+        public KindDonorUpdateCommandHandler(IMapper mapper, IKindDonorRepository donorRepository,IKindDonorCommentRepository kindDonorCommentRepository)
         {
             _mapper = mapper;
             _donorRepository = donorRepository;
+            _kindDonorCommentRepository = kindDonorCommentRepository;
         }
         public async Task<Unit> Handle(KindDonorUpdateCommand request, CancellationToken cancellationToken)
         {
@@ -28,6 +31,10 @@ namespace DMS.Services.Application.Features
                 {
                     throw new Exceptions.NotFoundException(nameof(Domain.Entities.KindDonor), Convert.ToString(request.Id));
                 }
+
+                var mappedKindDonorCommet = _mapper.Map<KindDonorCommentInfo>(request.KindDonorComment);
+
+                await _kindDonorCommentRepository.AddAsync(mappedKindDonorCommet);
 
                 _mapper.Map(request, donorToUpdate, typeof(KindDonorUpdateCommand), typeof(Domain.Entities.KindDonor));
 
