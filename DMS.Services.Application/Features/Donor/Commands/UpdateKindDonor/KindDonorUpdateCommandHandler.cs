@@ -32,9 +32,12 @@ namespace DMS.Services.Application.Features
                     throw new Exceptions.NotFoundException(nameof(Domain.Entities.KindDonor), Convert.ToString(request.Id));
                 }
 
-                var mappedKindDonorCommet = _mapper.Map<KindDonorCommentInfo>(request.KindDonorComment);
+                var mappedKindDonorCommet = _mapper.Map<KindDonorCommentInfo>(request?.KindDonorComment);
 
-                await _kindDonorCommentRepository.AddAsync(mappedKindDonorCommet);
+                if (mappedKindDonorCommet != null)
+                {
+                    await _kindDonorCommentRepository.AddAsync(mappedKindDonorCommet);
+                }
 
                 _mapper.Map(request, donorToUpdate, typeof(KindDonorUpdateCommand), typeof(Domain.Entities.KindDonor));
 
