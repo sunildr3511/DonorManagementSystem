@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DMS.Services.Application.Features
 {
-    public class UserInfoQueryHandler : IRequestHandler<UserInfoQuery, List<UserInfoVM>>
+    public class UserInfoQueryHandler : IRequestHandler<UserInfoQuery, UserInfoVM>
     {
         private readonly IMapper _mapper;
         private readonly IUserInfoRepository _userInfoRepository;
@@ -19,13 +19,13 @@ namespace DMS.Services.Application.Features
             _userInfoRepository = userInfoRepository;
         }
 
-        public async Task<List<UserInfoVM>> Handle(UserInfoQuery request, CancellationToken cancellationToken)
+        public async Task<UserInfoVM> Handle(UserInfoQuery request, CancellationToken cancellationToken)
         {
             try
             {
                 var loggedInUser = await _userInfoRepository.FetchLoggedInUserInfo(request.UserName,request.Email);
 
-                return _mapper.Map<List<UserInfoVM>>(loggedInUser);
+                return _mapper.Map<UserInfoVM>(loggedInUser);
             }
             catch (Exception ex)
             {

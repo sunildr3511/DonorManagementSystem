@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DMS.Services.Application.Features
 {
-   public class UserInfoQuery : IRequest<List<UserInfoVM>>
+   public class UserInfoQuery : IRequest<UserInfoVM>
     {
         public string UserName { get; set; }
 

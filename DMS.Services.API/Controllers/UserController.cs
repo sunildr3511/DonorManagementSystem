@@ -19,7 +19,7 @@ namespace DMS.Services.API.Controllers
         }
 
         [HttpGet("getLoggedInUserInfo", Name = "GetLoggedInUserInfo")]
-        public async Task<ActionResult<List<UserInfoVM>>> GetLoggedInUserInfo(string userName,string email)
+        public async Task<ActionResult<UserInfoVM>> GetLoggedInUserInfo(string userName,string email)
         {
             var result = await _mediator.Send(new UserInfoQuery { UserName = userName ,Email =email});
 

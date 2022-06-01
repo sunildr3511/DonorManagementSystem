@@ -8,6 +8,6 @@ namespace DMS.Services.Application.Contracts.Persistence
 {
    public interface IUserInfoRepository : IAsyncRepository<UserInfo>
     {
-        Task<List<UserInfo>> FetchLoggedInUserInfo(string userName,string email);
+        Task<UserInfo> FetchLoggedInUserInfo(string userName,string email);
     }
 }
