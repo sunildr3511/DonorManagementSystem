@@ -1,5 +1,6 @@
 ﻿using DMS.Services.Application.Contracts.Persistence;
 using DMS.Services.Application.Features;
+using DMS.Services.Domain.DataModel;
 using DMS.Services.Domain.Entities;
 using DMS.Services.Domain.RoleBasedDonors;
 using Microsoft.EntityFrameworkCore;
@@ -59,9 +60,10 @@ namespace DMS.Services.Persistence.Repositories
             return final;
         }
 
-        public async Task<List<Donor>> GetAllDonors(int loggedinUserId)
+        public async Task<List<DonorDM>> GetAllDonors(int loggedinUserId)
         {
-            var donorsInfo = await _dmsAppDBContext.DonorInfo.Where(x=>x.CreatedBy== loggedinUserId).Select(p => new Donor {
+            var donorsInfo = await _dmsAppDBContext.DonorInfo.Where(x=>x.CreatedBy== loggedinUserId).Select(p => new DonorDM
+            {
 
                 Id = p.Id,
                 DonorId = p.DonorId,
@@ -71,9 +73,10 @@ namespace DMS.Services.Persistence.Repositories
                 Centre = p.Centre,
                 FollowUpDate = p.FollowUpDate,
                 DonorType = p.DonorType,
-                TypeId =p.TypeId
+                TypeId =p.TypeId,
+                IsApproved = _dmsAppDBContext.DonorCommentInfo.Where(x => x.DonorId == p.Id && x.IsApproved).Any()
 
-            }).ToListAsync<Donor>();
+            }).ToListAsync<DonorDM>();
 
             return donorsInfo;
         }

@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DMS.Services.Application.Features
+namespace DMS.Services.Domain.DataModel
 {
-   public class DonorCommentVM
+   public class DonorCommentInfoDM
     {
+        public int Id { get; set; }
+
         public int DonorId { get; set; }
 
         public bool IsApproved { get; set; }

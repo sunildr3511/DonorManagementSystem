@@ -1,4 +1,5 @@
 ﻿using DMS.Services.Application.Features;
+using DMS.Services.Domain.DataModel;
 using DMS.Services.Domain.Entities;
 using DMS.Services.Domain.RoleBasedDonors;
 using System;
@@ -12,7 +13,7 @@ namespace DMS.Services.Application.Contracts.Persistence
     {
         Task<int> GetMaxId();
 
-        Task<List<Donor>> GetAllDonors(int loggedinUserId);
+        Task<List<DonorDM>> GetAllDonors(int loggedinUserId);
 
         Task<List<ReportingManagerDonorList>> FetchReportingManagerDonors(int loggedinUserId);
     }

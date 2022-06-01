@@ -1,4 +1,5 @@
-﻿using DMS.Services.Domain.Entities;
+﻿using DMS.Services.Domain.DataModel;
+using DMS.Services.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,6 +9,6 @@ namespace DMS.Services.Application.Contracts.Persistence
 {
    public interface IDonorCommentRepository : IAsyncRepository<DonorCommentInfo>
     {
-        Task<List<DonorCommentInfo>> GetCommentsForDonor(int donorId);
+        Task<List<DonorCommentInfoDM>> GetCommentsForDonor(int donorId);
     }
 }

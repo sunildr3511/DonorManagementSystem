@@ -1,4 +1,5 @@
-﻿using DMS.Services.Domain.Entities;
+﻿using DMS.Services.Domain.DataModel;
+using DMS.Services.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,6 +11,6 @@ namespace DMS.Services.Application.Contracts.Persistence
     {
         Task<int> GetMaxId();
 
-        Task<List<KindDonor>> GetAllKindDonors(int loggedinUserId);
+        Task<List<KindDonorDM>> GetAllKindDonors(int loggedinUserId);
     }
 }

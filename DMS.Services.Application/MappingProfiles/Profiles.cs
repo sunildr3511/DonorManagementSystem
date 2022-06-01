@@ -2,6 +2,7 @@
 using DMS.Services.Application.Common;
 using DMS.Services.Application.Features;
 using DMS.Services.Application.Features.Donor;
+using DMS.Services.Domain.DataModel;
 using DMS.Services.Domain.Entities;
 using DMS.Services.Domain.MasterEntities;
 using DMS.Services.Domain.RoleBasedDonors;
@@ -64,12 +65,18 @@ namespace DMS.Services.Application.MappingProfiles
                 opt.MapFrom(src => Utilities.GetDocumentDataInBytes(src.Document));
             });
 
-            CreateMap<Donor, DonorListVM>().ReverseMap();
+            CreateMap<DonorDM, DonorListVM>().ReverseMap().ForMember(x=>x.IsApproved, opt =>
+            {
+                opt.MapFrom(src => src.IsApproved);
+            });
 
-            CreateMap<DonorListVM, KindDonor>().ReverseMap().ForMember(x => x.Name, opt =>
-               {
-                   opt.MapFrom(src => src.FirstName + "-" + src.LastName);
-               });
+            CreateMap<DonorListVM, KindDonorDM>().ReverseMap().ForMember(x => x.Name, opt =>
+            {
+                opt.MapFrom(src => src.FirstName + "-" + src.LastName);
+            }).ForMember(x => x.IsApproved, opt =>
+            {
+                opt.MapFrom(src => src.IsApproved);
+            }); ;
 
             CreateMap<KindDonor, KindDonorCreateCommand>().ReverseMap();
 
@@ -326,8 +333,10 @@ namespace DMS.Services.Application.MappingProfiles
             CreateMap<UserInfo, UserUpdateCommand>().ReverseMap();
             CreateMap<UserInfo, UserDeleteCommand>().ReverseMap();
             CreateMap<ReportingManagerDonorList, ReportingManagerDonorListVM>().ReverseMap();
-            CreateMap<DonorCommentInfo, DonorCommentVM>().ReverseMap();
-            CreateMap<KindDonorCommentInfo, DonorCommentVM>().ReverseMap();
+            CreateMap<DonorCommentInfoDM, DonorCommentVM>().ReverseMap();
+            CreateMap<KindDonorCommentInfoDM, DonorCommentVM>().ReverseMap();
+
+          
         }
 
 

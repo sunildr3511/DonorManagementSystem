@@ -1,4 +1,5 @@
 ﻿using DMS.Services.Application.Contracts.Persistence;
+using DMS.Services.Domain.DataModel;
 using DMS.Services.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,9 +19,24 @@ namespace DMS.Services.Persistence.Repositories
             _dmsAppDBContext = dmsAppDBContext;
         }
 
-        public async Task<List<KindDonorCommentInfo>> GetCommentsForDonor(int donorId)
+        public async Task<List<KindDonorCommentInfoDM>> GetCommentsForDonor(int donorId)
         {
-            var kindDonorComments = await _dmsAppDBContext.KindDonorCommentInfo.Where(x => x.DonorId == donorId).Select(p => p).ToListAsync<KindDonorCommentInfo>();
+            var kindDonorComments = await (from t1 in _dmsAppDBContext.KindDonorCommentInfo
+                                    join t2 in _dmsAppDBContext.UserInfo
+                                    on t1.CommentBy equals t2.Id
+                                    where t1.DonorId == donorId
+                                    select new KindDonorCommentInfoDM
+                                    {
+                                        Id = t1.Id,
+                                        DonorId = t1.DonorId,
+                                        IsApproved = t1.IsApproved,
+                                        Comments =t1.Comments,
+                                        CommentBy = t1.CommentBy,
+                                        CommentByName = t2.Name
+                                    }).ToListAsync<KindDonorCommentInfoDM>();
+
+
+          //  var kindDonorComments = await _dmsAppDBContext.KindDonorCommentInfo.Where(x => x.DonorId == donorId).Select(p => p).ToListAsync<KindDonorCommentInfoDM>();
 
             return kindDonorComments;
         }
