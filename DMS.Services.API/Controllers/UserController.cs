@@ -29,17 +29,17 @@ namespace DMS.Services.API.Controllers
         [HttpPost("add", Name = "AddUser")]
         public async Task<ActionResult> AddUser([FromBody] UserCreateCommand userCreateCommand)
         {
-            var id = await _mediator.Send(userCreateCommand);
+            var response = await _mediator.Send(userCreateCommand);
 
-            return Ok(id);
+            return Ok(response);
         }
 
         [HttpPut("update", Name = "UpdateUser")]
         public async Task<ActionResult> UpdateUser([FromBody] UserUpdateCommand userUpdateCommand)
         {
-            await _mediator.Send(userUpdateCommand);
+            var response = await _mediator.Send(userUpdateCommand);
 
-            return NoContent();
+             return Ok(response);
         }
 
         [HttpDelete("delete", Name = "DeleteUser")]

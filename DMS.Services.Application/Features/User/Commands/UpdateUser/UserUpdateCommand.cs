@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DMS.Services.Application.Features
 {
-   public class UserUpdateCommand : IRequest
+   public class UserUpdateCommand : IRequest<string>
     {
         public int Id { get; set; }
 

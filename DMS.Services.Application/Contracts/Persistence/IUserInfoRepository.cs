@@ -9,5 +9,9 @@ namespace DMS.Services.Application.Contracts.Persistence
    public interface IUserInfoRepository : IAsyncRepository<UserInfo>
     {
         Task<UserInfo> FetchLoggedInUserInfo(string userName,string email);
+
+        Task<bool> ValidateDuplicateUserInfoOnAdd(string userName, string email);
+
+        Task<bool> ValidateDuplicateUserInfoOnUpdate(string userName, string email,int userId);
     }
 }

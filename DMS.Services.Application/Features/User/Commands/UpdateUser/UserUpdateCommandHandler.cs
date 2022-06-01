@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace DMS.Services.Application.Features
 { 
-   public class UserUpdateCommandHandler : IRequestHandler<UserUpdateCommand>
+   public class UserUpdateCommandHandler : IRequestHandler<UserUpdateCommand,string>
    {
         private readonly IMapper _mapper;
-        private readonly IAsyncRepository<UserInfo> _repository;
-    public UserUpdateCommandHandler(IMapper mapper, IAsyncRepository<UserInfo> repository)
+        private readonly IUserInfoRepository _repository;
+    public UserUpdateCommandHandler(IMapper mapper, IUserInfoRepository repository)
     {
             _mapper = mapper;
             _repository = repository;
     }
-    public async Task<Unit> Handle(UserUpdateCommand request, CancellationToken cancellationToken)
+    public async Task<string> Handle(UserUpdateCommand request, CancellationToken cancellationToken)
     {
             try
             {
@@ -30,13 +30,20 @@ namespace DMS.Services.Application.Features
                     throw new Exceptions.NotFoundException(nameof(Domain.Entities.UserInfo), Convert.ToString(request.Id));
                 }
 
+                bool isDuplicateUser = await _repository.ValidateDuplicateUserInfoOnUpdate(request.Name, request.Email,request.Id);
+
+                if (isDuplicateUser)
+                {
+                    return "User with name and email already exist.";
+                }
+
                 userToUpdate.IsDelete = false;
 
                 _mapper.Map(request, userToUpdate, typeof(UserUpdateCommand), typeof(Domain.Entities.UserInfo));
 
                 await _repository.UpdateAsync(userToUpdate);
 
-                return Unit.Value;
+                return "User successfully updated.";
             }
             catch (Exception ex)
             {

@@ -26,5 +26,21 @@ namespace DMS.Services.Persistence.Repositories
             return result;
 
         }
+
+        public async Task<bool> ValidateDuplicateUserInfoOnAdd(string userName, string email)
+        {
+            var result = await _dmsAppDBContext.UserInfo.Where(x => x.Name.ToLower() == userName.ToLower() &&
+                                                                    x.Email.ToLower() == email.ToLower()).AnyAsync();
+
+            return result;
+        }
+
+        public async Task<bool> ValidateDuplicateUserInfoOnUpdate(string userName, string email, int userId)
+        {
+            var result = await _dmsAppDBContext.UserInfo.Where(x => x.Name.ToLower() == userName.ToLower() &&
+                                                                    x.Email.ToLower() == email.ToLower() && x.Id != userId).AnyAsync();
+
+            return result;
+        }
     }
 }

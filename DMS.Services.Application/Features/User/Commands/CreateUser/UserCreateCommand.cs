@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DMS.Services.Application.Features
 {
-   public class UserCreateCommand : IRequest<int>
+   public class UserCreateCommand : IRequest<string>
     {
         public string Name { get; set; }
 
