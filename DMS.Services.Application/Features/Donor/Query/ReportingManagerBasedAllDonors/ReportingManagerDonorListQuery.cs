@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DMS.Services.Application.Features
 {
-   public class AreaManagerDonorListQuery : IRequest<List<AreaManagerDonorListVM>>
+   public class ReportingManagerDonorListQuery : IRequest<List<ReportingManagerDonorListVM>>
     {
         public int LoggedInUserId { get; set; }
     }

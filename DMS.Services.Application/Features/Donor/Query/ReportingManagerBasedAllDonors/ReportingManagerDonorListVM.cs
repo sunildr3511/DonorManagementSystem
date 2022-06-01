@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DMS.Services.Domain.RoleBasedDonors
+namespace DMS.Services.Application.Features.Donor
 {
-   public class AreaManagerDonorList
+   public class ReportingManagerDonorListVM
     {
         public int UserId { get; set; }
 

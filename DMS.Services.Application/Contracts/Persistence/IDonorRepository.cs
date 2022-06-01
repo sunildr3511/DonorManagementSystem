@@ -14,6 +14,6 @@ namespace DMS.Services.Application.Contracts.Persistence
 
         Task<List<Donor>> GetAllDonors(int loggedinUserId);
 
-        Task<List<AreaManagerDonorList>> FetchAreadManagerDonors(int loggedinUserId);
+        Task<List<ReportingManagerDonorList>> FetchReportingManagerDonors(int loggedinUserId);
     }
 }

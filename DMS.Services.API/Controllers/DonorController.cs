@@ -67,10 +67,10 @@ namespace DMS.Services.API.Controllers
         }
 
 
-        [HttpGet("areaManagerBasedAllDonors", Name = "GetAreaManagerBasedAllDonors")]
-        public async Task<ActionResult<List<AreaManagerDonorListVM>>> GetAreaManagerBasedAllDonors(int loggedInUserId)
+        [HttpGet("reportingManagerBasedAllDonors", Name = "GetReportingManagerBasedAllDonors")]
+        public async Task<ActionResult<List<ReportingManagerDonorListVM>>> GetReportingManagerBasedAllDonors(int loggedInUserId)
         {
-            var result = await _mediator.Send(new AreaManagerDonorListQuery { LoggedInUserId = loggedInUserId });
+            var result = await _mediator.Send(new ReportingManagerDonorListQuery { LoggedInUserId = loggedInUserId });
 
             return Ok(result);
 

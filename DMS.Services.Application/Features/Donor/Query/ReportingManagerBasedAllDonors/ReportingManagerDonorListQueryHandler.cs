@@ -11,24 +11,24 @@ using System.Threading.Tasks;
 
 namespace DMS.Services.Application.Features
 {
-    public class AreaManagerDonorListQueryHandler : IRequestHandler<AreaManagerDonorListQuery, List<AreaManagerDonorListVM>>
+    public class ReportingManagerDonorListQueryHandler : IRequestHandler<ReportingManagerDonorListQuery, List<ReportingManagerDonorListVM>>
     {
         private readonly IMapper _mapper;
-        private readonly ILogger<AreaManagerDonorListQueryHandler> _logger;
+        private readonly ILogger<ReportingManagerDonorListQueryHandler> _logger;
         private readonly IDonorRepository _repository;
-        public AreaManagerDonorListQueryHandler(IMapper mapper, ILogger<AreaManagerDonorListQueryHandler> logger, IDonorRepository repository)
+        public ReportingManagerDonorListQueryHandler(IMapper mapper, ILogger<ReportingManagerDonorListQueryHandler> logger, IDonorRepository repository)
         {
             _mapper = mapper;
             _logger = logger;
             _repository = repository;
         }
-        public async Task<List<AreaManagerDonorListVM>> Handle(AreaManagerDonorListQuery request, CancellationToken cancellationToken)
+        public async Task<List<ReportingManagerDonorListVM>> Handle(ReportingManagerDonorListQuery request, CancellationToken cancellationToken)
         {
             try
             {
-                var allDonors = await _repository.FetchAreadManagerDonors(request.LoggedInUserId);
+                var allDonors = await _repository.FetchReportingManagerDonors(request.LoggedInUserId);
 
-                List<AreaManagerDonorListVM> donorListVMs = _mapper.Map<List<AreaManagerDonorListVM>>(allDonors);
+                List<ReportingManagerDonorListVM> donorListVMs = _mapper.Map<List<ReportingManagerDonorListVM>>(allDonors);
 
                 return donorListVMs;
             }
