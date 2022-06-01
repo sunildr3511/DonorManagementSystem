@@ -26,7 +26,7 @@ namespace DMS.Services.Persistence.Repositories
             var donorresult = await (from t1 in _dmsAppDBContext.DonorInfo
                                      join t2 in _dmsAppDBContext.UserInfo
                                      on t1.CreatedBy equals t2.Id
-                                     where t2.ReportingManagerCode == loggedinUserId
+                                     where t2.ReportingManagerCode == loggedinUserId || t2.Id == loggedinUserId
                                                             group t2 by new { t2.Id, t2.Name, t2.ReportingManagerCode } into grouping
                                      select new ReportingManagerDonorList { UserId = grouping.Key.Id, 
                                                                         UserName = grouping.Key.Name, 
@@ -36,7 +36,7 @@ namespace DMS.Services.Persistence.Repositories
             var Kinddonorresult = await (from t1 in _dmsAppDBContext.KindDonorInfo
                                          join t2 in _dmsAppDBContext.UserInfo
                                          on t1.CreatedBy equals t2.Id
-                                         where t2.ReportingManagerCode == loggedinUserId
+                                         where t2.ReportingManagerCode == loggedinUserId || t2.Id == loggedinUserId
                                          group t2 by new { t2.Id, t2.Name, t2.ReportingManagerCode } into grouping
                                          select new ReportingManagerDonorList { UserId = grouping.Key.Id, 
                                                                            UserName = grouping.Key.Name, 
