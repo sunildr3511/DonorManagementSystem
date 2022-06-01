@@ -24,11 +24,11 @@ namespace DMS.Services.Application.Features
         {
             try
             {
-                bool isDuplicateUser = await _repository.ValidateDuplicateUserInfoOnAdd(request.Name, request.Email);
+                bool isDuplicateUser = await _repository.ValidateDuplicateUserInfoOnAdd(request.Email);
 
                 if (isDuplicateUser)
                 {
-                    return "User with name and email already exist.";
+                    return "User with email already exist.";
                 }
 
                 var mappedUser = _mapper.Map<UserInfo>(request);

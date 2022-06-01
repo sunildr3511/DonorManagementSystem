@@ -10,8 +10,8 @@ namespace DMS.Services.Application.Contracts.Persistence
     {
         Task<UserInfo> FetchLoggedInUserInfo(string userName,string email);
 
-        Task<bool> ValidateDuplicateUserInfoOnAdd(string userName, string email);
+        Task<bool> ValidateDuplicateUserInfoOnAdd(string email);
 
-        Task<bool> ValidateDuplicateUserInfoOnUpdate(string userName, string email,int userId);
+        Task<bool> ValidateDuplicateUserInfoOnUpdate(string email,int userId);
     }
 }

@@ -30,11 +30,11 @@ namespace DMS.Services.Application.Features
                     throw new Exceptions.NotFoundException(nameof(Domain.Entities.UserInfo), Convert.ToString(request.Id));
                 }
 
-                bool isDuplicateUser = await _repository.ValidateDuplicateUserInfoOnUpdate(request.Name, request.Email,request.Id);
+                bool isDuplicateUser = await _repository.ValidateDuplicateUserInfoOnUpdate(request.Email,request.Id);
 
                 if (isDuplicateUser)
                 {
-                    return "User with name and email already exist.";
+                    return "User with email already exist.";
                 }
 
                 userToUpdate.IsDelete = false;
