@@ -30,7 +30,8 @@ namespace DMS.Services.Persistence.Repositories
                                                             group t2 by new { t2.Id, t2.Name, t2.ReportingManagerCode } into grouping
                                      select new ReportingManagerDonorList { UserId = grouping.Key.Id, 
                                                                         UserName = grouping.Key.Name, 
-                                                                        ReportingManagerCode = grouping.Key.ReportingManagerCode, 
+                                                                        ReportingManagerCode = grouping.Key.ReportingManagerCode,
+                                                                        ReportingManagerName = _dmsAppDBContext.UserInfo.Where(x=>x.Id == grouping.Key.ReportingManagerCode).Select(u=>u.Name).FirstOrDefault(),
                                                                         DonorProfileCount = grouping.Count() }).ToListAsync<ReportingManagerDonorList>();
 
             var Kinddonorresult = await (from t1 in _dmsAppDBContext.KindDonorInfo
@@ -40,20 +41,23 @@ namespace DMS.Services.Persistence.Repositories
                                          group t2 by new { t2.Id, t2.Name, t2.ReportingManagerCode } into grouping
                                          select new ReportingManagerDonorList { UserId = grouping.Key.Id, 
                                                                            UserName = grouping.Key.Name, 
-                                                                        ReportingManagerCode = grouping.Key.ReportingManagerCode, 
-                                                                        DonorProfileCount = grouping.Count() }).ToListAsync<ReportingManagerDonorList>();
+                                                                        ReportingManagerCode = grouping.Key.ReportingManagerCode,
+                                             ReportingManagerName = _dmsAppDBContext.UserInfo.Where(x => x.Id == grouping.Key.ReportingManagerCode).Select(u => u.Name).FirstOrDefault(),
+                                             DonorProfileCount = grouping.Count() }).ToListAsync<ReportingManagerDonorList>();
 
             var final=  donorresult.Concat(Kinddonorresult)
             .GroupBy(x => new
             {
                 x.UserId,
                 x.UserName,
-                x.ReportingManagerCode
+                x.ReportingManagerCode,
+                x.ReportingManagerName
             }).Select(grp => new ReportingManagerDonorList
             {
                 UserId = grp.Key.UserId,
                 UserName = grp.Key.UserName,
                 ReportingManagerCode = grp.Key.ReportingManagerCode,
+                ReportingManagerName = grp.Key.ReportingManagerName,
                 DonorProfileCount = grp.Sum(ta => ta.DonorProfileCount)
             }).ToList();
 

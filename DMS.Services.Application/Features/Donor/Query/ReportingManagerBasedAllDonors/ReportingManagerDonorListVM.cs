@@ -13,5 +13,7 @@ namespace DMS.Services.Application.Features.Donor
         public int ReportingManagerCode { get; set; }
 
         public int DonorProfileCount { get; set; }
+
+        public string ReportingManagerName { get; set; }
     }
 }

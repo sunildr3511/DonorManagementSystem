@@ -13,5 +13,7 @@ namespace DMS.Services.Domain.RoleBasedDonors
         public int ReportingManagerCode { get; set; }
 
         public int DonorProfileCount { get; set; }
+
+        public string ReportingManagerName { get; set; }
     }
 }
