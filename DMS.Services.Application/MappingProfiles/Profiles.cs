@@ -65,17 +65,17 @@ namespace DMS.Services.Application.MappingProfiles
                 opt.MapFrom(src => Utilities.GetDocumentDataInBytes(src.Document));
             });
 
-            CreateMap<DonorDM, DonorListVM>().ReverseMap().ForMember(x=>x.IsApproved, opt =>
+            CreateMap<DonorDM, DonorListVM>().ReverseMap().ForMember(x=>x.Status, opt =>
             {
-                opt.MapFrom(src => src.IsApproved);
+                opt.MapFrom(src => src.Status);
             });
 
             CreateMap<DonorListVM, KindDonorDM>().ReverseMap().ForMember(x => x.Name, opt =>
             {
                 opt.MapFrom(src => src.FirstName + "-" + src.LastName);
-            }).ForMember(x => x.IsApproved, opt =>
+            }).ForMember(x => x.Status, opt =>
             {
-                opt.MapFrom(src => src.IsApproved);
+                opt.MapFrom(src => src.Status);
             }); ;
 
             CreateMap<KindDonor, KindDonorCreateCommand>().ReverseMap();

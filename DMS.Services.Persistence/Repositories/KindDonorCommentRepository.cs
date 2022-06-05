@@ -29,7 +29,7 @@ namespace DMS.Services.Persistence.Repositories
                                     {
                                         Id = t1.Id,
                                         DonorId = t1.DonorId,
-                                        IsApproved = t1.IsApproved,
+                                        Status = t1.Status,
                                         Comments =t1.Comments,
                                         CommentBy = t1.CommentBy,
                                         CommentByName = t2.Name

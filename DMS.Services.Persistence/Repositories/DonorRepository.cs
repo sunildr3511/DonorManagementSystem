@@ -78,7 +78,7 @@ namespace DMS.Services.Persistence.Repositories
                 FollowUpDate = p.FollowUpDate,
                 DonorType = p.DonorType,
                 TypeId =p.TypeId,
-                IsApproved = _dmsAppDBContext.DonorCommentInfo.Where(x => x.DonorId == p.Id && x.IsApproved).Any()
+                Status = _dmsAppDBContext.DonorCommentInfo.OrderByDescending(x=>x.Id).Where(y=>y.DonorId==p.Id).FirstOrDefault().Status
 
             }).ToListAsync<DonorDM>();
 

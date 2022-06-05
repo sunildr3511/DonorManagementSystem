@@ -10,7 +10,7 @@ namespace DMS.Services.Domain.DataModel
 
         public int DonorId { get; set; }
 
-        public bool IsApproved { get; set; }
+        public string Status { get; set; }
 
         public string Comments { get; set; }
 

@@ -34,6 +34,6 @@ namespace DMS.Services.Application.Features
         public int TypeId { get; set; }
 
         public int DonationReceivedId { get; set; }
-        public bool IsApproved { get; set; }
+        public string Status { get; set; }
     }
 }

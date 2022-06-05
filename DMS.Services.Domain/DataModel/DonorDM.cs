@@ -32,6 +32,6 @@ namespace DMS.Services.Domain.DataModel
         public int CreatedBy { get; set; }
 
         public int UpdatedBy { get; set; }
-        public bool IsApproved { get; set; }
+        public string Status { get; set; }
     }
 }

@@ -23,6 +23,6 @@ namespace DMS.Services.Domain.DataModel
 
         public int UpdatedBy { get; set; }
 
-        public bool IsApproved { get; set; }
+        public string Status { get; set; }
     }
 }

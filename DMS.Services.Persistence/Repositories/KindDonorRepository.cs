@@ -35,7 +35,7 @@ namespace DMS.Services.Persistence.Repositories
                 Description = p.Description,
                 Address = p.Address,
                 DonationReceivedId=p.DonationReceivedId,
-                IsApproved = _dmsAppDBContext.KindDonorCommentInfo.Where(x => x.DonorId == p.Id && x.IsApproved).Any()
+                Status = _dmsAppDBContext.KindDonorCommentInfo.OrderByDescending(x=>x.Id).Where(y=>y.DonorId == p.Id).FirstOrDefault().Status
             }).ToListAsync<KindDonorDM>();
 
             return kindDonorsInfo;
