@@ -335,10 +335,8 @@ namespace DMS.Services.Application.MappingProfiles
             CreateMap<ReportingManagerDonorList, ReportingManagerDonorListVM>().ReverseMap();
             CreateMap<DonorCommentInfoDM, DonorCommentVM>().ReverseMap();
             CreateMap<KindDonorCommentInfoDM, DonorCommentVM>().ReverseMap();
-
-          
+            CreateMap<KindDonorCommentInfo, DonorCommentVM>().ReverseMap();
+            CreateMap<DonorCommentInfo, DonorCommentVM>().ReverseMap();
         }
-
-
     }
 }
