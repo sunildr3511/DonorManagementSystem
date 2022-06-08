@@ -74,7 +74,14 @@ namespace DMS.Services.Application.Features
 
             mappedDonorInfo.DonorComments = _mapper.Map<List<DonorCommentVM>>(donorComments);
 
-            mappedDonorInfo.Status = mappedDonorInfo.DonorComments.OrderByDescending(x => x.Id).Where(y => y.DonorId ==request.Id).FirstOrDefault().Status;
+            if (mappedDonorInfo.DonorComments.Count == 0)
+            {
+                mappedDonorInfo.Status = string.Empty;
+            }
+            else
+            {
+                mappedDonorInfo.Status = mappedDonorInfo.DonorComments.OrderByDescending(x => x.Id).Where(y => y.DonorId == request.Id).FirstOrDefault().Status;
+            }
 
             return mappedDonorInfo;
         }
@@ -93,7 +100,15 @@ namespace DMS.Services.Application.Features
 
             mappedDonorInfo.DonorComments = _mapper.Map<List<DonorCommentVM>>(kindDonorComments);
 
-            mappedDonorInfo.Status = mappedDonorInfo.DonorComments.OrderByDescending(x => x.Id).Where(y => y.DonorId == request.Id).FirstOrDefault().Status;
+            if (mappedDonorInfo.DonorComments.Count == 0)
+            {
+                mappedDonorInfo.Status = string.Empty;
+            }
+            else
+            {
+                mappedDonorInfo.Status = mappedDonorInfo.DonorComments.OrderByDescending(x => x.Id).Where(y => y.DonorId == request.Id).FirstOrDefault().Status;
+            }
+            
 
             return mappedDonorInfo;
         }
