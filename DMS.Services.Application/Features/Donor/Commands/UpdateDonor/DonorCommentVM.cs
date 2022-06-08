@@ -17,5 +17,7 @@ namespace DMS.Services.Application.Features
         public string CommentByName { get; set; }
 
         public string Status { get; set; }
+
+        public int Id { get; set; }
     }
 }

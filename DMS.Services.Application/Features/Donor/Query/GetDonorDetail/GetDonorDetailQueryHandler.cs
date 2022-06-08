@@ -4,6 +4,7 @@ using DMS.Services.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -73,6 +74,8 @@ namespace DMS.Services.Application.Features
 
             mappedDonorInfo.DonorComments = _mapper.Map<List<DonorCommentVM>>(donorComments);
 
+            mappedDonorInfo.Status = mappedDonorInfo.DonorComments.OrderByDescending(x => x.Id).Where(y => y.DonorId ==request.Id).FirstOrDefault().Status;
+
             return mappedDonorInfo;
         }
 
@@ -89,6 +92,8 @@ namespace DMS.Services.Application.Features
             mappedDonorInfo = _mapper.Map<DonorDetailVM>(kindDonorInfo);
 
             mappedDonorInfo.DonorComments = _mapper.Map<List<DonorCommentVM>>(kindDonorComments);
+
+            mappedDonorInfo.Status = mappedDonorInfo.DonorComments.OrderByDescending(x => x.Id).Where(y => y.DonorId == request.Id).FirstOrDefault().Status;
 
             return mappedDonorInfo;
         }

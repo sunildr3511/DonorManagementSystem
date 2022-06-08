@@ -43,5 +43,7 @@ namespace DMS.Services.Application.Features
         public int DonationReceivedId { get; set; }
 
         public List<DonorCommentVM> DonorComments { get; set; }
+
+        public string Status { get; set; }
     }
 }
