@@ -26,6 +26,9 @@ namespace DMS.Services.Application.Features
             {
                 var mappedRequest = _mapper.Map<FusProposal>(request);
 
+                if (request.PeriodOfDonationFrom > request.PeriodofDonationTo)
+                    throw new Exception("PeriodOfDonationFrom cannot be greater then PeriodofDonationTo!");
+
                 await _repository.AddAsync(mappedRequest);
 
                 return Unit.Value;

@@ -4,6 +4,7 @@ using DMS.Services.Domain.Entities;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,6 +27,14 @@ namespace DMS.Services.Application.Features
             try
             {
                 var mappedNonFusProposal=   _mapper.Map<NonFusProposal>(request);
+
+                bool isAnyCenterAmountIsNull = request.ListOfBudget.Where(x => x.CenterAmount == null).Any();
+
+                if (isAnyCenterAmountIsNull)
+                    throw new Exception("Budget cannot be null or empty!");
+
+                if(request.PeriodOfDonationFrom > request.PeriodofDonationTo)
+                    throw new Exception("PeriodOfDonationFrom cannot be greater then PeriodofDonationTo!");
 
                 var @savedRecord=  await _nonFusProposalRepository.AddAsync(mappedNonFusProposal);
 

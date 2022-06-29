@@ -9,8 +9,8 @@ namespace DMS.Services.Application.Features
 
         public string ActivityName { get; set; }
 
-        public double CenterAmount { get; set; }
+        public double? CenterAmount { get; set; }
 
-        public double BudgetAmount { get; set; }
+        public double? BudgetAmount { get; set; }
     }
 }
