@@ -1,5 +1,6 @@
 ﻿using DMS.Services.Application.Features;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace DMS.Services.API.Controllers
         {
             var result = await _mediator.Send(new UserInfoQuery { UserName = userName ,Email =email});
 
-            return Ok(result);
+            return result == null ? StatusCode(StatusCodes.Status500InternalServerError) : Ok(result);
         }
 
         [HttpPost("add", Name = "AddUser")]
